@@ -1,44 +1,73 @@
 # Wellness Wallet 💛🌿
 
-A calming, cyber-safe web app designed for women in tech — especially women of color — to reconnect, recharge, and stay digitally protected.
+Welcome to my little corner of calm in this fast-paced tech world — a cyber-safe wellness app built **for women in tech, especially my sisters of color**, who deserve to recharge, connect, and protect themselves online without the extra noise.
 
-## 🌟 Key Features
+---
 
-- ✨ Daily mantras for emotional grounding (with optional voice playback)  
-- 🧘🏾‍♀️ Mood check-ins and emotional journaling  
-- 🔐 Cyber safety micro-lessons (“Tip of the Day”)  
-- 🗣️ Anonymous community chat via embedded tool  
-- 🌈 Light/Dark mode support with gentle color themes  
+## 🌟 What’s Inside?
 
-## 🛠️ Built With
+- ✨ Daily mantras to center your soul — with smooth voice playback, because your vibes deserve to be heard  
+- 🧘🏾‍♀️ Mood check-ins and journaling made simple and meaningful  
+- 🔐 Bite-sized cyber safety tips to boost your digital confidence  
+- 🗣️ Anonymous chat space — a safe place to share, vent, or just be heard  
+- 🌈 Light/Dark mode because sometimes you want to shine bright, sometimes keep it chill  
+- 🎵 Relaxing music clips to help calm your mind  
+- 🖼️ Beautiful visuals to soothe your eyes and spirit  
 
-- **Glide** (no-code app builder)  
-- **Google Sheets** (dynamic content source)  
-- **Tawk.to** (anonymous chat integration)  
-- **Canva** (branding & visuals)  
-- **GitHub** (project hosting)  
+---
+
+## 🛠️ How It’s Built
+
+- **HTML / CSS / JavaScript** — straightforward, custom-built frontend  
+- **Google Sheets + Sheet.Best API** — live data streaming  
+- **Tawk.to** (or your preferred anonymous chat) — keeping the space safe and welcoming  
+- **Canva** — for branding and polished visuals  
+- **GitHub Pages** — free hosting and deployment  
+
+---
 
 ## 📸 Screenshots
 
-*(Add screenshots here once you have them)*
+*(Coming soon — can’t wait to show you the app in action)*
+
+---
 
 ## 🎥 Demo Video
 
-*(Link to demo video here when ready)*
+*(Link will be here once the demo is ready)*
 
-## 💡 Inspiration
+---
 
-This project was built during the **FusionHacks 2025** hackathon. As a Black woman entering cybersecurity, I wanted to create something that blends tech with healing — a tool for us, by us.
+## 💡 Why I Built This
 
-## 🚀 Future Plans
+As a Black woman stepping into cybersecurity, I wanted a space that speaks to us — blending tech with healing, and creating a tool that feels like a community and a breath of fresh air.
 
-- Add AI-generated mantras based on mood  
-- Real-time chat moderation  
-- Weekly cyber self-care challenges  
+---
 
-## 📬 Connect
+## 🚀 What’s Next
 
-**Creator**: [Raenell Banks](https://github.com/raenellbanks)  
-**Cybersecurity Portfolio**: https://sites.google.com/view/raenellbanksportfolio/home  
-**LinkedIn**:  www.linkedin.com/in/raenell-banks-888016151
+- AI-powered mantras tailored to your mood  
+- Real-time chat moderation for a safe experience  
+- Weekly cyber self-care challenges to keep you sharp  
+
+---
+
+## 📬 Connect With Me
+
+- Creator: Raenell Banks — passionate about making tech kinder and more inclusive  
+- Cybersecurity Portfolio: [https://sites.google.com/view/raenellbanksportfolio/home](https://sites.google.com/view/raenellbanksportfolio/home)  
+- LinkedIn: [linkedin.com/in/raenell-banks-888016151](https://www.linkedin.com/in/raenell-banks-888016151)
+
+---
+
+## ⚙️ Running Locally
+
+1. Clone this repo  
+2. Open `index.html` in any modern browser  
+3. Make sure your Google Sheets API URL is set correctly in `app.js` for dynamic content  
+
+---
+
+Thanks for checking out Wellness Wallet — your digital sanctuary where self-care meets cybersecurity. Let’s get centered, connected, and empowered. 💛🌿✨
+
 
