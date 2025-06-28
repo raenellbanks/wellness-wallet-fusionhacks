@@ -4,12 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Wellness Wallet</title>
+
+    <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Merienda:ital,wght@1,700&family=Pacifico&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <header>
       <h1>✨ Wellness Wallet ✨</h1>
@@ -23,7 +28,12 @@
       <section id="soul-food">
         <h2>Food for the Soul</h2>
         <p id="mantraText">Loading mantra...</p>
-        <audio controls id="audioPlayer" src=""></audio>
+        <audio id="audioPlayer" controls>
+          Your browser does not support the audio element.
+        </audio>
+        <div class="controls">
+          <button id="nextSoul">Next</button>
+        </div>
       </section>
 
       <!-- Section 2: STOP and Reflect -->
@@ -31,11 +41,11 @@
         <h2>STOP and Reflect</h2>
         <p id="moodPrompt">Loading mood prompt...</p>
         <ul class="emoji-row" aria-label="Mood emojis">
-          <li><button aria-label="Happy face">😊</button></li>
-          <li><button aria-label="Sad face">😢</button></li>
-          <li><button aria-label="Angry face">😠</button></li>
-          <li><button aria-label="Sleepy face">😴</button></li>
-          <li><button aria-label="Sick face">🤒</button></li>
+          <li><button class="emoji" aria-label="Happy">😊</button></li>
+          <li><button class="emoji" aria-label="Sad">😢</button></li>
+          <li><button class="emoji" aria-label="Angry">😠</button></li>
+          <li><button class="emoji" aria-label="Sleepy">😴</button></li>
+          <li><button class="emoji" aria-label="Sick">🤒</button></li>
         </ul>
       </section>
 
@@ -44,17 +54,17 @@
         <h2>The Drop</h2>
         <img
           id="tipImage"
-          src="assets/cyber1.jpg"
-          alt="Cybersecurity tip visual"
+          src="assets/placeholder.jpg"
+          alt="Cyber Tip Visual"
         />
         <p id="cyberTip">Loading tip...</p>
-        <button type="button" onclick="nextTip()">Next Tip</button>
+        <button id="nextTip">Next</button>
       </section>
 
       <!-- Section 4: What’s on YOUR mind sis? -->
       <section id="anonymous">
         <h2>What’s on YOUR mind, sis?</h2>
-        <p>Tell me what’s on your heart. I’m listening 💬</p>
+        <p>Speak freely — your words are safe here 💬</p>
         <iframe
           src="https://forms.gle/D3Knh1qsujpKj7pa6"
           width="100%"
@@ -65,6 +75,7 @@
       </section>
     </main>
 
+    <!-- Script -->
     <script src="script.js"></script>
   </body>
 </html>
