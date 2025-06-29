@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Wellness Wallet</title>
 
-    <!-- Fonts -->
+    <!-- Google Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Merienda:ital,wght@1,700&family=Pacifico&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Merienda&family=Pacifico&display=swap"
       rel="stylesheet"
     />
 
@@ -17,23 +17,30 @@
   <body>
     <header>
       <h1>
-        <span class="sparkle">&#10024;</span> Wellness Wallet
+        <span class="sparkle">&#10024;</span>
+        Wellness Wallet
         <span class="sparkle">&#10024;</span>
       </h1>
       <div class="toggle-container">
         <input type="checkbox" id="modeToggle" aria-label="Toggle dark mode" />
-        <label class="switch" for="modeToggle"
-          ><span class="slider"></span
-        ></label>
+        <label class="switch" for="modeToggle">
+          <span class="slider"></span>
+        </label>
       </div>
     </header>
 
     <!-- Section 1: Food for the Soul -->
-    <section class="card" id="food-for-the-soul">
-      <h2>Food for the Soul</h2>
-      <p id="mantraText">Loading mantras...</p>
-      <audio id="mantraAudio" controls></audio>
-      <button id="nextMantraBtn">Next</button>
+    <section class="card dual-column" id="food-for-the-soul">
+      <div class="left-column">
+        <h2>Food for the Soul</h2>
+        <p id="mantraText">Loading mantras...</p>
+        <audio id="mantraAudio" controls></audio>
+        <button id="nextMantraBtn">Next</button>
+      </div>
+      <div class="right-column">
+        <!-- Music area can stay empty if not visually needed -->
+        <p class="audio-info">Enjoy peaceful sounds with your mantra.</p>
+      </div>
     </section>
 
     <!-- Section 2: STOP and Reflect -->
@@ -46,76 +53,14 @@
           class="emoji"
           data-feeling="happy"
           type="button"
-          aria-pressed="false"
-          aria-label="Happy face"
-          onkeydown="if(event.key==='Enter'||event.key===' '){this.click();}"
+          aria-label="Happy"
         >
           &#128522;
         </button>
-        <button
-          class="emoji"
-          data-feeling="sad"
-          type="button"
-          aria-pressed="false"
-          aria-label="Sad face"
-          onkeydown="if(event.key==='Enter'||event.key===' '){this.click();}"
-        >
+        <button class="emoji" data-feeling="sad" type="button" aria-label="Sad">
           &#128546;
-        </button>
-        <button
-          class="emoji"
-          data-feeling="angry"
-          type="button"
-          aria-pressed="false"
-          aria-label="Angry face"
-          onkeydown="if(event.key==='Enter'||event.key===' '){this.click();}"
-        >
-          &#128544;
-        </button>
-        <button
-          class="emoji"
-          data-feeling="sleepy"
-          type="button"
-          aria-pressed="false"
-          aria-label="Sleepy face"
-          onkeydown="if(event.key==='Enter'||event.key===' '){this.click();}"
-        >
-          &#128564;
-        </button>
-        <button
-          class="emoji"
-          data-feeling="sick"
-          type="button"
-          aria-pressed="false"
-          aria-label="Sick face"
-          onkeydown="if(event.key==='Enter'||event.key===' '){this.click();}"
-        >
-          &#129298;
         </button>
       </fieldset>
     </section>
-
-    <!-- Section 3: The Drop -->
-    <section class="card" id="the-drop">
-      <h2>The Drop</h2>
-      <img id="cyberImage" src="placeholder.jpg" alt="Cybersecurity tip" />
-      <p id="cyberTip">Loading cybersecurity tips...</p>
-      <button id="nextCyberTipBtn">Next</button>
-    </section>
-
-    <!-- Section 4: What’s on YOUR mind sis? -->
-    <section class="card" id="whats-on-your-mind">
-      <h2>What’s on YOUR mind sis?</h2>
-      <p>Your words are safe here. This is private, just for your peace.</p>
-      <iframe
-        src="https://forms.gle/D3Knh1qsujpKj7pa6"
-        width="100%"
-        height="600"
-        title="Anonymous message form"
-        class="anon-form"
-      ></iframe>
-    </section>
-
-    <script src="script.js"></script>
   </body>
 </html>

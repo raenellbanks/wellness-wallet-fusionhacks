@@ -1,31 +1,66 @@
-# ✨ Wellness Wallet ✨
+# 💖 Wellness Wallet 💻🧘🏾‍♀️
 
-**A digital safe space for mind, soul, and cyber wellness – built for women of color, by a woman of color.**
+Welcome to **Wellness Wallet** — a digital safe space created with love by **Raenell Banks**, a Black woman in tech who's _done surviving_ and now choosing to _thrive_.
 
-## 🧠 What It Is
+This web app blends mindfulness with cybersecurity — two areas often left out of conversations about wellness for women of color. **Here, we honor both.**
 
-Wellness Wallet is a single-page self-care web app blending daily inspiration, mood tracking, and cybersecurity tips in a soft, feminine interface. Built with HTML, CSS, JavaScript, and Google Sheets (via Sheet.best), it offers rotating mantras, mood check-ins with emoji options, cyber hygiene reminders, and anonymous journaling.
-
-## 🛠️ Tech Stack
-
-- **Frontend:** HTML5, CSS3, JavaScript
-- **Design:** Soft floral background, Peachy Keen color palette, responsive layout, light/dark mode toggle
-- **Audio:** Integrated mp3 voice messages
-- **Backend:** Google Sheets via Sheet.best for dynamic content
-- **Privacy:** Anonymous journaling using embedded Google Form
-
-## 💡 Why This Project?
-
-This project was created for the FusionHacks 2 Hackathon. As a Black woman in tech, I wanted to build something that prioritizes _us_ — our mental, digital, and emotional well-being. Wellness Wallet is my contribution to creating sacred, tech-empowered spaces where we can be soft, expressive, and protected — online and within.
-
-## 🖼️ Screenshots & Demo
-
-_(Add your demo link or screenshots here)_
-
-## 🚀 How to Run
-
-Just open `index.html` in your browser — everything lives in that single page.
+🛠 Built for the 2025 [FusionHacks](https://fusionhacks.devpost.com/) hackathon.  
+🌐 Live site: [https://raenellbanks.github.io/wellness-wallet-fusionhacks/](https://raenellbanks.github.io/wellness-wallet-fusionhacks/)
 
 ---
 
-Created with love by Raenell 🧘🏽‍♀️💻✨
+## ✨ Why I Built This
+
+I’m **Raenell Banks** — a Cybersecurity Analyst-in-training through **Merit America**, a Black woman, a music lover, a sister, an auntie, and someone who just wants to enjoy life, not barely make it through it.
+
+Too often, women like me are expected to carry the weight of the world without spaces to **vent**, **reflect**, or **learn how to protect ourselves** in the digital space.  
+I built _Wellness Wallet_ for **us** — the soft warriors.
+
+This project gives us:
+
+- Daily affirmations for our spirits
+- A place to reflect on our moods
+- A safe anonymous space to speak freely
+- And real cyber hygiene tips to protect our digital peace
+
+Because **wellness isn't just yoga mats and herbal tea** — it's emotional safety, online safety, and the space to breathe.
+
+---
+
+## 🔐 What It Does
+
+### 🌿 1. Food for the Soul
+
+- 🌸 Daily mantras displayed from a live Google Sheet
+- 🎧 Peaceful audio voice messages (rotated with text)
+- ✨ Layout split into **two sides** — one for text, one for music
+- 💫 Play button to listen, with a visual rotation on "Next"
+
+### 🎭 2. STOP and Reflect
+
+- 🎯 Mood prompt pulled from Sheets
+- 🥺 Five expressive emoji buttons (happy, sad, angry, sleepy, sick)
+- 📊 Plan to add a **percentage-based mood counter**
+
+### 🔐 3. The Drop
+
+- 💡 Quick, beginner-friendly **cybersecurity tips**
+- 🖼 Matching visuals for every tip (from Google Sheets image links)
+- 🔁 Click “Next” for fresh insight every time
+
+### 💬 4. What’s on YOUR mind, sis?
+
+- 🧘🏾‍♀️ Safe, private anonymous journal form
+- ✍🏾 Just write. No logins, no judgment, no data collected.
+
+---
+
+## 🌈 Design Features
+
+| Element          | Style Used                         |
+| ---------------- | ---------------------------------- | ------- |
+| **Header Font**  | `Pacifico`, 96px                   |
+| **Body Font**    | `Merienda`, 15px                   |
+| **Theme Toggle** | Light/Dark Mode (works flawlessly) |
+| **Background**   | Soft floral spa vibe               |
+| **Palette**      | 🌲 #228B22                         | 💛 #FFC |
