@@ -1,67 +1,215 @@
+/* Fonts & base */
+
 body {
   font-family: "Merienda", cursive;
+  margin: 0;
   background: url("docs/floral-background.jpg") no-repeat center center fixed;
   background-size: cover;
-  margin: 0;
-  padding: 0;
-  color: #333;
+  color: #5a3e36; /* a warm brown */
+  transition: background-color 0.3s, color 0.3s;
 }
 
-header {
+h1 {
   font-family: "Pacifico", cursive;
-  font-size: 48px;
+  font-size: 4rem;
   text-align: center;
-  padding: 20px;
-  color: #ff69b4;
-  background: rgba(255, 255, 255, 0.8);
+  margin: 1rem 0;
+  color: #ff726f; /* coral peach */
+  position: relative;
 }
+
+.sparkle {
+  animation: sparkle 2s infinite ease-in-out alternate;
+  color: #ffc107;
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.toggle-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+/* Toggle Switch */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #ffb74d;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Cards (sections) */
 
 .card {
-  background: rgba(255, 255, 255, 0.85);
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 800px;
-  border-radius: 20px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  background: rgba(255 255 255 / 0.8);
+  max-width: 900px;
+  margin: 1.5rem auto;
+  border-radius: 1.5rem;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 0 25px rgba(255, 193, 7, 0.25);
+  transition: background-color 0.3s ease;
 }
+
+/* Headings */
+
+.card h2 {
+  color: #ff6f61;
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+/* Buttons */
 
 button {
   background: transparent;
-  border: 2px solid #ffc107;
-  padding: 10px 20px;
+  border: 2px solid #ffb74d;
   border-radius: 20px;
+  padding: 0.5rem 1.5rem;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.3s;
+  color: #5a3e36;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  margin-top: 1rem;
 }
 
-button:hover {
-  background-color: #ffc107;
+button:hover,
+button:focus {
+  background-color: #ffb74d;
   color: #fff;
-  box-shadow: 0 0 10px #ffc107;
+  box-shadow: 0 0 15px #ffb74d;
+  outline: none;
+}
+
+/* Emojis */
+
+#emojiContainer {
+  display: flex;
+  gap: 1.2rem;
+  font-size: 2.5rem;
+  margin-top: 0.5rem;
 }
 
 .emoji {
-  font-size: 32px;
-  margin: 10px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  border-radius: 50%;
+  padding: 0.3rem;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-.emoji:hover {
-  transform: scale(1.2);
-  filter: drop-shadow(0 0 10px #ffc107);
+.emoji:hover,
+.emoji:focus,
+.emoji[aria-pressed="true"] {
+  filter: drop-shadow(0 0 8px #ffb74d);
+  transform: scale(1.3);
+  outline: none;
 }
 
-/* Dark mode */
+/* Image */
+
+#cyberImage {
+  max-width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
+  margin-bottom: 1rem;
+}
+
+/* Dark Mode */
+
 body.dark {
-  background-color: #121212;
-  color: #eee;
+  background-color: #2e2e2e;
+  color: #ddd1c6;
 }
 
 body.dark .card {
-  background: rgba(30, 30, 30, 0.9);
+  background: rgba(50 50 50 / 0.85);
+  box-shadow: 0 0 20px #ffb74d;
 }
+
+body.dark button {
+  border-color: #ffc107;
+  color: #ffc107;
+}
+
+body.dark button:hover,
+body.dark button:focus {
+  background-color: #ffc107;
+  color: #2e2e2e;
+  box-shadow: 0 0 20px #ffc107;
+}
+
+/* Iframe styling */
+
 .anon-form {
   border: none;
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
+  width: 100%;
+  height: 600px;
+  margin-top: 1rem;
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  .card {
+    margin: 1rem;
+    padding: 1rem;
+  }
+  #emojiContainer {
+    font-size: 2rem;
+    gap: 0.7rem;
+  }
 }
