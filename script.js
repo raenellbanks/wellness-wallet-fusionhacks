@@ -1,24 +1,23 @@
-// SheetBest API for your Google Sheet
 const API_URL =
   "https://api.sheetbest.com/sheets/32bbc4a0-25ba-44ae-835f-2b8e6d207b9a";
 
-// Data arrays
-let mantras = [],
-  voiceMessages = [],
-  moodPrompts = [],
-  cyberTips = [],
-  images = [];
-let mantraIndex = 0,
-  cyberTipIndex = 0,
-  moodIndex = 0;
+let mantras = [];
+let voiceMessages = [];
+let moodPrompts = [];
+let cyberTips = [];
+let images = [];
 
-// Elements
+let mantraIndex = 0;
+let cyberTipIndex = 0;
+let moodIndex = 0;
+
 const mantraTextEl = document.getElementById("mantraText");
 const mantraAudioEl = document.getElementById("mantraAudio");
 const nextMantraBtn = document.getElementById("nextMantraBtn");
 
 const moodPromptEl = document.getElementById("moodPrompt");
 const emojiContainer = document.getElementById("emojiContainer");
+const emojiStatsEl = document.getElementById("emojiStats");
 
 const cyberTipEl = document.getElementById("cyberTip");
 const cyberImageEl = document.getElementById("cyberImage");
@@ -26,10 +25,19 @@ const nextCyberTipBtn = document.getElementById("nextCyberTipBtn");
 
 const modeToggle = document.getElementById("modeToggle");
 
-// Fetch data from SheetBest
+// Data structure to count emoji selections
+const emojiCounts = {
+  happy: 0,
+  sad: 0,
+  angry: 0,
+  sleepy: 0,
+  sick: 0,
+};
+
 async function fetchData() {
   try {
     const res = await fetch(API_URL);
+    if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
     const data = await res.json();
 
     mantras = data.map((row) => row.daily_mantra).filter(Boolean);
@@ -38,86 +46,125 @@ async function fetchData() {
     cyberTips = data.map((row) => row.cyber_tip).filter(Boolean);
     images = data.map((row) => row.image_url).filter(Boolean);
 
-    if (!mantras.length) mantras = ["You're enough just as you are 💛"];
-    if (!moodPrompts.length) moodPrompts = ["How are you feeling today, sis?"];
-    if (!cyberTips.length) cyberTips = ["Stay safe online. 💻"];
-    if (!images.length) images = [""];
+    if (mantras.length === 0) mantras = ["No mantras available"];
+    if (moodPrompts.length === 0) moodPrompts = ["No mood prompts available"];
+    if (cyberTips.length === 0) cyberTips = ["No cyber tips available"];
+    if (images.length === 0) images = [""];
 
     initUI();
-  } catch (err) {
-    console.error("Fetch failed:", err);
+  } catch (error) {
+    console.error("Error loading data:", error);
     mantraTextEl.textContent = "Failed to load mantras.";
     moodPromptEl.textContent = "Failed to load mood prompts.";
     cyberTipEl.textContent = "Failed to load cyber tips.";
   }
 }
 
-// Init interface
 function initUI() {
   showMantra();
   showMoodPrompt();
   showCyberTip();
 }
 
-// Show next mantra or voice message
 function showMantra() {
-  const combinedLength = mantras.length + voiceMessages.length;
+  const hasVoice = voiceMessages.length > 0;
+  const combinedLength = mantras.length + (hasVoice ? voiceMessages.length : 0);
+
   if (combinedLength === 0) {
-    mantraTextEl.textContent = "No mantras or audio today.";
+    mantraTextEl.textContent = "No mantras or voice messages available.";
     mantraAudioEl.style.display = "none";
     return;
   }
 
   if (mantraIndex % 2 === 0) {
-    const index = Math.floor(mantraIndex / 2) % mantras.length;
-    mantraTextEl.textContent = mantras[index];
+    const mantraPos = Math.floor(mantraIndex / 2) % mantras.length;
+    mantraTextEl.textContent = mantras[mantraPos];
     mantraAudioEl.style.display = "none";
     mantraAudioEl.pause();
     mantraAudioEl.src = "";
   } else {
-    const index = Math.floor(mantraIndex / 2) % voiceMessages.length;
+    const voicePos = Math.floor(mantraIndex / 2) % voiceMessages.length;
     mantraTextEl.textContent = "";
     mantraAudioEl.style.display = "block";
-    mantraAudioEl.src = voiceMessages[index];
+    mantraAudioEl.src = voiceMessages[voicePos];
     mantraAudioEl.load();
     mantraAudioEl.play().catch(() => {});
   }
 }
 
 nextMantraBtn.addEventListener("click", () => {
-  mantraIndex = (mantraIndex + 1) % (mantras.length + voiceMessages.length);
+  mantraIndex =
+    (mantraIndex + 1) % (mantras.length + voiceMessages.length || 1);
   showMantra();
 });
 
-// Show mood prompt
 function showMoodPrompt() {
-  moodPromptEl.textContent = moodPrompts[moodIndex % moodPrompts.length];
+  if (moodPrompts.length === 0) {
+    moodPromptEl.textContent = "No mood prompts available.";
+    return;
+  }
+  moodPromptEl.textContent = moodPrompts[moodIndex];
 }
 
-// Emoji button clicks
 emojiContainer.addEventListener("click", (e) => {
   if (!e.target.classList.contains("emoji")) return;
-  [...emojiContainer.children].forEach((el) =>
-    el.setAttribute("aria-pressed", "false")
-  );
+
+  // Reset all
+  [...emojiContainer.children].forEach((emoji) => {
+    emoji.setAttribute("aria-pressed", "false");
+  });
+
+  // Mark clicked emoji pressed
   e.target.setAttribute("aria-pressed", "true");
+
+  // Count emoji
+  const feeling = e.target.getAttribute("data-feeling");
+  if (feeling && emojiCounts.hasOwnProperty(feeling)) {
+    emojiCounts[feeling]++;
+    updateEmojiStats();
+  }
 });
 
-// Keyboard emoji selection
 emojiContainer.addEventListener("keydown", (e) => {
   if (!e.target.classList.contains("emoji")) return;
-  if (["Enter", " "].includes(e.key)) {
+  if (e.key === "Enter" || e.key === " ") {
     e.preventDefault();
     e.target.click();
   }
 });
 
-// Show tip and image
+function updateEmojiStats() {
+  const totalVotes = Object.values(emojiCounts).reduce((a, b) => a + b, 0);
+  if (totalVotes === 0) {
+    emojiStatsEl.textContent = "No moods selected yet.";
+    return;
+  }
+
+  const percentages = Object.entries(emojiCounts).map(([feeling, count]) => {
+    const percent = ((count / totalVotes) * 100).toFixed(1);
+    return `${feeling}: ${percent}%`;
+  });
+
+  emojiStatsEl.textContent = `Mood stats: ${percentages.join(", ")}`;
+}
+
 function showCyberTip() {
-  const i = cyberTipIndex % cyberTips.length;
-  cyberTipEl.textContent = cyberTips[i];
-  cyberImageEl.src = images[i] || "";
-  cyberImageEl.alt = "Cyber Tip";
+  if (cyberTips.length === 0) {
+    cyberTipEl.textContent = "No cyber tips available.";
+    cyberImageEl.src = "";
+    cyberImageEl.alt = "";
+    return;
+  }
+  const idx = cyberTipIndex % cyberTips.length;
+  cyberTipEl.textContent = cyberTips[idx];
+
+  // Fix empty or invalid image urls to fallback placeholder
+  if (images[idx] && images[idx].trim() !== "") {
+    cyberImageEl.src = images[idx];
+  } else {
+    cyberImageEl.src = "placeholder.jpg"; // make sure you have this file or replace with a valid fallback
+  }
+  cyberImageEl.alt = cyberTips[idx];
 }
 
 nextCyberTipBtn.addEventListener("click", () => {
@@ -125,22 +172,25 @@ nextCyberTipBtn.addEventListener("click", () => {
   showCyberTip();
 });
 
-// Dark mode setup
+// Dark mode toggle handlers
+
 function setInitialTheme() {
-  const stored = localStorage.getItem("ww-theme");
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const useDark = stored === "dark" || (!stored && prefersDark);
-  document.body.classList.toggle("dark", useDark);
-  modeToggle.checked = useDark;
+  const storedTheme = localStorage.getItem("ww-theme");
+  if (storedTheme) {
+    document.body.classList.toggle("dark", storedTheme === "dark");
+    modeToggle.checked = storedTheme === "dark";
+  } else {
+    document.body.classList.toggle("dark", prefersDark);
+    modeToggle.checked = prefersDark;
+  }
 }
 
 modeToggle.addEventListener("change", () => {
-  const isDark = modeToggle.checked;
-  document.body.classList.toggle("dark", isDark);
-  localStorage.setItem("ww-theme", isDark ? "dark" : "light");
+  document.body.classList.toggle("dark", modeToggle.checked);
+  localStorage.setItem("ww-theme", modeToggle.checked ? "dark" : "light");
 });
 
-// Start app
 window.addEventListener("DOMContentLoaded", () => {
   setInitialTheme();
   fetchData();

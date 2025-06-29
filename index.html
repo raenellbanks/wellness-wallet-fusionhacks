@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Wellness Wallet</title>
 
-    <!-- Google Fonts -->
+    <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Merienda&family=Pacifico&display=swap"
       rel="stylesheet"
@@ -17,29 +17,28 @@
   <body>
     <header>
       <h1>
-        <span class="sparkle">&#10024;</span>
-        Wellness Wallet
+        <span class="sparkle">&#10024;</span> Wellness Wallet
         <span class="sparkle">&#10024;</span>
       </h1>
       <div class="toggle-container">
         <input type="checkbox" id="modeToggle" aria-label="Toggle dark mode" />
-        <label class="switch" for="modeToggle">
-          <span class="slider"></span>
-        </label>
+        <label class="switch" for="modeToggle"
+          ><span class="slider"></span
+        ></label>
       </div>
     </header>
 
     <!-- Section 1: Food for the Soul -->
-    <section class="card dual-column" id="food-for-the-soul">
-      <div class="left-column">
-        <h2>Food for the Soul</h2>
-        <p id="mantraText">Loading mantras...</p>
-        <audio id="mantraAudio" controls></audio>
-        <button id="nextMantraBtn">Next</button>
-      </div>
-      <div class="right-column">
-        <!-- Music area can stay empty if not visually needed -->
-        <p class="audio-info">Enjoy peaceful sounds with your mantra.</p>
+    <section class="card" id="food-for-the-soul">
+      <h2>Food for the Soul</h2>
+      <div class="mantra-music-container">
+        <div class="mantra-column">
+          <p id="mantraText">Loading mantras...</p>
+          <button id="nextMantraBtn">Next</button>
+        </div>
+        <div class="music-column">
+          <audio id="mantraAudio" controls></audio>
+        </div>
       </div>
     </section>
 
@@ -47,20 +46,84 @@
     <section class="card" id="stop-and-reflect">
       <h2>STOP and Reflect</h2>
       <p id="moodPrompt">Loading mood prompts...</p>
-      <fieldset id="emojiContainer">
+      <fieldset id="emojiContainer" aria-label="Select your current mood">
         <legend>Select your current mood</legend>
         <button
           class="emoji"
           data-feeling="happy"
           type="button"
-          aria-label="Happy"
+          aria-pressed="false"
+          aria-label="Happy face"
         >
           &#128522;
         </button>
-        <button class="emoji" data-feeling="sad" type="button" aria-label="Sad">
+        <button
+          class="emoji"
+          data-feeling="sad"
+          type="button"
+          aria-pressed="false"
+          aria-label="Sad face"
+        >
           &#128546;
         </button>
+        <button
+          class="emoji"
+          data-feeling="angry"
+          type="button"
+          aria-pressed="false"
+          aria-label="Angry face"
+        >
+          &#128544;
+        </button>
+        <button
+          class="emoji"
+          data-feeling="sleepy"
+          type="button"
+          aria-pressed="false"
+          aria-label="Sleepy face"
+        >
+          &#128564;
+        </button>
+        <button
+          class="emoji"
+          data-feeling="sick"
+          type="button"
+          aria-pressed="false"
+          aria-label="Sick face"
+        >
+          &#129298;
+        </button>
       </fieldset>
+      <p id="emojiStats" aria-live="polite" class="emoji-stats"></p>
     </section>
+
+    <!-- Section 3: The Drop -->
+    <section class="card" id="the-drop">
+      <h2>The Drop</h2>
+      <div class="cybertip-image-container">
+        <div class="cybertip-column">
+          <p id="cyberTip">Loading cybersecurity tips...</p>
+          <button id="nextCyberTipBtn">Next</button>
+        </div>
+        <div class="image-column">
+          <img id="cyberImage" src="" alt="Cybersecurity tip image" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: What’s on YOUR mind sis? -->
+    <section class="card" id="whats-on-your-mind">
+      <h2>What’s on YOUR mind sis?</h2>
+      <p>Your words are safe here. This is private, just for your peace.</p>
+      <iframe
+        src="https://forms.gle/D3Knh1qsujpKj7pa6"
+        width="100%"
+        height="600"
+        title="Anonymous message form"
+        class="anon-form"
+      ></iframe>
+    </section>
+
+    <script src="script.js"></script>
   </body>
 </html>
