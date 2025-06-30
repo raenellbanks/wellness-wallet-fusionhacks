@@ -7,10 +7,9 @@
 
     <!-- Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Merienda&family=Pacifico&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Merienda:ital,wght@1,700&family=Pacifico&display=swap"
       rel="stylesheet"
     />
-
     <!-- Styles -->
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -28,91 +27,67 @@
       </div>
     </header>
 
-    <!-- Section 1: Food for the Soul -->
-    <section class="card" id="food-for-the-soul">
+    <!-- 🍽️ Section: Food for the Soul -->
+    <section class="card">
       <h2>Food for the Soul</h2>
-      <div class="mantra-music-container">
-        <div class="mantra-column">
+      <div class="split">
+        <div class="split-left">
           <p id="mantraText">Loading mantras...</p>
-          <button id="nextMantraBtn">Next</button>
+          <button class="fancy-btn" id="nextMantraBtn">Next</button>
         </div>
-        <div class="music-column">
+        <div class="split-right">
           <audio id="mantraAudio" controls></audio>
         </div>
       </div>
     </section>
 
-    <!-- Section 2: STOP and Reflect -->
-    <section class="card" id="stop-and-reflect">
+    <!-- 🌈 Section: STOP and Reflect -->
+    <section class="card">
       <h2>STOP and Reflect</h2>
-      <p id="moodPrompt">Loading mood prompts...</p>
-      <fieldset id="emojiContainer" aria-label="Select your current mood">
-        <legend>Select your current mood</legend>
-        <button
-          class="emoji"
-          data-feeling="happy"
-          type="button"
-          aria-pressed="false"
-          aria-label="Happy face"
-        >
-          &#128522;
-        </button>
-        <button
-          class="emoji"
-          data-feeling="sad"
-          type="button"
-          aria-pressed="false"
-          aria-label="Sad face"
-        >
-          &#128546;
-        </button>
-        <button
-          class="emoji"
-          data-feeling="angry"
-          type="button"
-          aria-pressed="false"
-          aria-label="Angry face"
-        >
-          &#128544;
-        </button>
-        <button
-          class="emoji"
-          data-feeling="sleepy"
-          type="button"
-          aria-pressed="false"
-          aria-label="Sleepy face"
-        >
-          &#128564;
-        </button>
-        <button
-          class="emoji"
-          data-feeling="sick"
-          type="button"
-          aria-pressed="false"
-          aria-label="Sick face"
-        >
-          &#129298;
-        </button>
-      </fieldset>
-      <p id="emojiStats" aria-live="polite" class="emoji-stats"></p>
-    </section>
-
-    <!-- Section 3: The Drop -->
-    <section class="card" id="the-drop">
-      <h2>The Drop</h2>
-      <div class="cybertip-image-container">
-        <div class="cybertip-column">
-          <p id="cyberTip">Loading cybersecurity tips...</p>
-          <button id="nextCyberTipBtn">Next</button>
+      <div class="split square-box">
+        <div class="split-left">
+          <p id="moodPrompt">Loading mood prompts...</p>
         </div>
-        <div class="image-column">
-          <img id="cyberImage" src="" alt="Cybersecurity tip image" />
+        <div class="split-right">
+          <fieldset id="emojiContainer">
+            <legend>Select your current mood</legend>
+            <button class="emoji" data-feeling="happy" aria-label="Happy">
+              &#128522;
+            </button>
+            <button class="emoji" data-feeling="sad" aria-label="Sad">
+              &#128546;
+            </button>
+            <button class="emoji" data-feeling="angry" aria-label="Angry">
+              &#128544;
+            </button>
+            <button class="emoji" data-feeling="sleepy" aria-label="Sleepy">
+              &#128564;
+            </button>
+            <button class="emoji" data-feeling="sick" aria-label="Sick">
+              &#129298;
+            </button>
+          </fieldset>
+          <div id="emojiResults">No votes yet.</div>
         </div>
       </div>
     </section>
 
-    <!-- Section 4: What’s on YOUR mind sis? -->
-    <section class="card" id="whats-on-your-mind">
+    <!-- 🔐 Section: The Drop -->
+    <section class="card">
+      <h2>The Drop</h2>
+      <div class="split">
+        <div class="split-left">
+          <p id="cyberTip">Loading cybersecurity tips...</p>
+          <button class="fancy-btn" id="nextCyberTipBtn">Next</button>
+        </div>
+        <div class="split-right">
+          <img id="cyberImage" src="placeholder.jpg" alt="Tip visual" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 💬 Section: What’s on YOUR mind sis? -->
+    <section class="card">
       <h2>What’s on YOUR mind sis?</h2>
       <p>Your words are safe here. This is private, just for your peace.</p>
       <iframe
