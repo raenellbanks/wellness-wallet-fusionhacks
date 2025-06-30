@@ -1,12 +1,11 @@
-/* === BASE STYLES === */
 body {
   font-family: "Merienda", cursive;
-  font-size: 15px;
-  margin: 0;
   background: url("docs/massage-therapy-1584711_1920.jpg") no-repeat center
     center fixed;
   background-size: cover;
+  margin: 0;
   color: #5a3e36;
+  font-size: 15px;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -14,20 +13,19 @@ h1 {
   font-family: "Pacifico", cursive;
   font-size: 96px;
   text-align: center;
+  color: #ffc107;
   margin: 1rem 0;
-  color: #ff726f;
 }
 
 .sparkle {
-  animation: sparkle 2s infinite ease-in-out alternate;
-  color: #ffc107;
+  animation: sparkle 1.5s ease-in-out infinite alternate;
 }
 
 @keyframes sparkle {
-  0% {
+  from {
     opacity: 0.6;
   }
-  100% {
+  to {
     opacity: 1;
   }
 }
@@ -38,7 +36,6 @@ h1 {
   margin-bottom: 2rem;
 }
 
-/* === TOGGLE SWITCH === */
 .switch {
   position: relative;
   display: inline-block;
@@ -53,14 +50,14 @@ h1 {
 }
 
 .slider {
-  position: absolute;
+  background-color: #ccc;
+  border-radius: 34px;
   cursor: pointer;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
-  border-radius: 34px;
   transition: 0.4s;
 }
 
@@ -84,104 +81,93 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-/* === CARD LAYOUT === */
 .card {
   background: rgba(255, 255, 255, 0.85);
-  max-width: 1000px;
   margin: 1.5rem auto;
+  max-width: 900px;
+  padding: 2rem;
   border-radius: 1.5rem;
-  padding: 1.5rem 2rem;
-  box-shadow: 0 0 25px rgba(255, 193, 7, 0.25);
-  transition: background-color 0.3s ease;
+  box-shadow: 0 0 25px rgba(255, 193, 7, 0.4);
 }
 
 .card h2 {
   font-size: 1.8rem;
-  font-weight: bold;
   color: #ff6f61;
   margin-bottom: 1rem;
 }
 
-/* === FLEX SECTIONS === */
-.split-container {
+.split-section {
   display: flex;
-  gap: 2rem;
   flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
 }
 
-.split-left,
-.split-right {
-  flex: 1;
-  min-width: 280px;
+.mantra-container,
+.music-container,
+.prompt-container,
+.tip-container,
+.image-container,
+.emoji-container-wrapper {
+  flex: 1 1 45%;
 }
 
-/* === BUTTONS === */
 button {
   background: transparent;
   border: 2px solid #ffb74d;
-  border-radius: 30px;
-  padding: 0.6rem 1.5rem;
+  border-radius: 20px;
+  padding: 0.5rem 1.5rem;
   font-weight: bold;
-  font-family: "Merienda", cursive;
-  font-size: 15px;
-  cursor: pointer;
   color: #5a3e36;
-  transition: all 0.3s ease;
+  cursor: pointer;
   margin-top: 1rem;
+  transition: background 0.3s, box-shadow 0.3s;
 }
 
-button:hover,
-button:focus {
+button:hover {
   background-color: #ffb74d;
   color: #fff;
-  box-shadow: 0 0 12px #ffb74d;
-  transform: scale(1.05);
-  outline: none;
+  box-shadow: 0 0 10px #ffb74d;
 }
 
-/* === EMOJIS === */
 #emojiContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
-  font-size: 3rem;
   justify-content: center;
-  margin-top: 1rem;
+  gap: 1rem;
+  font-size: 3rem;
+  margin: 1rem 0;
 }
 
 .emoji {
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 50%;
-  padding: 0.4rem;
-  -webkit-user-select: none;
-  user-select: none;
+  transition: transform 0.3s, filter 0.3s;
 }
 
 .emoji:hover,
 .emoji[aria-pressed="true"] {
-  transform: scale(1.25);
-  box-shadow: 0 0 10px #ffc107;
-  background-color: rgba(255, 183, 77, 0.2);
+  transform: scale(1.3);
+  filter: drop-shadow(0 0 8px #ffb74d);
 }
 
-/* === IMAGE === */
 #cyberImage {
   max-width: 100%;
-  height: auto;
   border-radius: 1rem;
-  box-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-/* === DARK MODE === */
+.anon-form {
+  border: none;
+  border-radius: 1rem;
+}
+
 body.dark {
-  background-color: #2e2e2e;
-  color: #f0e6d2;
+  background-color: #222;
+  color: #eee;
 }
 
 body.dark .card {
-  background: rgba(50, 50, 50, 0.9);
-  box-shadow: 0 0 20px #ffb74d;
+  background: rgba(50, 50, 50, 0.85);
 }
 
 body.dark button {
@@ -191,40 +177,29 @@ body.dark button {
 
 body.dark button:hover {
   background-color: #ffc107;
-  color: #2e2e2e;
+  color: #222;
 }
 
-/* === STATS === */
-#emojiStats {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  font-style: italic;
-  color: #775f53;
-  text-align: center;
-}
+@media (max-width: 600px) {
+  h1 {
+    font-size: 48px;
+  }
 
-/* === IFRAME FORM === */
-.anon-form {
-  border: none;
-  border-radius: 1rem;
-  width: 100%;
-  height: 600px;
-  margin-top: 1rem;
-  box-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
-}
-
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-  .split-container {
+  .split-section {
     flex-direction: column;
   }
-
+}
+@media (max-width: 400px) {
   h1 {
-    font-size: 64px;
+    font-size: 36px;
   }
 
-  #emojiContainer {
-    font-size: 2.5rem;
-    gap: 1rem;
+  .card {
+    padding: 1rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 0.5rem;
   }
 }

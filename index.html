@@ -2,55 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Wellness Wallet</title>
-
-    <!-- SEO Meta Tags -->
-    <meta
-      name="description"
-      content="Wellness Wallet is a self-care + cybersecurity web app for all women looking to breathe, reflect, and protect their peace — digitally and emotionally."
-    />
-    <meta name="author" content="Raenell Banks" />
-
-    <!-- Open Graph Meta Tags for Social Sharing -->
-    <meta property="og:title" content="Wellness Wallet" />
-    <meta
-      property="og:description"
-      content="A digital safe space for women to reset, reflect, and recharge."
-    />
-    <meta property="og:image" content="assets/og-preview.jpg" />
-    <meta
-      property="og:url"
-      content="https://raenellbanks.github.io/wellness-wallet-fusionhacks/"
-    />
-    <meta property="og:type" content="website" />
-
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Wellness Wallet" />
-    <meta
-      name="twitter:description"
-      content="Cybersecurity meets self-care in this beautiful wellness web app."
-    />
-    <meta name="twitter:image" content="assets/og-preview.jpg" />
-
-    <!-- Favicon (optional) -->
-    <link rel="icon" href="assets/og-preview.jpg" type="image/jpeg" />
 
     <!-- Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Merienda&family=Pacifico&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Merienda:ital,wght@1,700&family=Pacifico&display=swap"
       rel="stylesheet"
     />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="script.css" />
   </head>
-
   <body>
     <header>
       <h1>
-        <span class="sparkle">&#10024;</span> Wellness Wallet
+        <span class="sparkle">&#10024;</span>
+        Wellness Wallet
         <span class="sparkle">&#10024;</span>
       </h1>
       <div class="toggle-container">
@@ -61,64 +29,57 @@
       </div>
     </header>
 
-    <!-- Food for the Soul -->
-    <section class="card split-section" id="food-for-the-soul">
-      <div class="left">
-        <h2>Food for the Soul</h2>
-        <p id="mantraText">Loading mantras...</p>
-        <button id="nextMantraBtn">Next</button>
-      </div>
-      <div class="right">
-        <audio id="mantraAudio" controls></audio>
-      </div>
-    </section>
-
-    <!-- STOP and Reflect -->
-    <section class="card split-section" id="stop-and-reflect">
-      <div class="left">
-        <h2>STOP and Reflect</h2>
-        <p id="moodPrompt">Loading mood prompts...</p>
-      </div>
-      <div class="right">
-        <fieldset id="emojiContainer">
-          <legend>Select your current mood</legend>
-          <button class="emoji" data-feeling="happy" aria-pressed="false">
-            &#128522;
-          </button>
-          <button class="emoji" data-feeling="sad" aria-pressed="false">
-            &#128546;
-          </button>
-          <button class="emoji" data-feeling="angry" aria-pressed="false">
-            &#128544;
-          </button>
-          <button class="emoji" data-feeling="sleepy" aria-pressed="false">
-            &#128564;
-          </button>
-          <button class="emoji" data-feeling="sick" aria-pressed="false">
-            &#129298;
-          </button>
-        </fieldset>
-        <div id="emojiStats"></div>
+    <!-- Section 1: Food for the Soul -->
+    <section class="card" id="food-for-the-soul">
+      <h2>Food for the Soul</h2>
+      <div class="split-section">
+        <div class="mantra-container">
+          <p id="mantraText">Loading mantras...</p>
+          <button id="nextMantraBtn">Next Mantra</button>
+        </div>
+        <div class="music-container">
+          <audio id="mantraAudio" controls></audio>
+          <button id="playMantraBtn">Play MP3</button>
+        </div>
       </div>
     </section>
 
-    <!-- The Drop -->
-    <section class="card split-section" id="the-drop">
-      <div class="left">
-        <h2>The Drop</h2>
-        <p id="cyberTip">Loading cybersecurity tips...</p>
-        <button id="nextCyberTipBtn">Next</button>
-      </div>
-      <div class="right">
-        <img
-          id="cyberImage"
-          src="assets/placeholder.jpg"
-          alt="Cybersecurity illustration"
-        />
+    <!-- Section 2: STOP and Reflect -->
+    <section class="card" id="stop-and-reflect">
+      <h2>STOP and Reflect</h2>
+      <div class="split-section">
+        <div class="prompt-container">
+          <p id="moodPrompt">Loading mood prompts...</p>
+        </div>
+        <div class="emoji-container-wrapper">
+          <fieldset id="emojiContainer">
+            <legend>Select your current mood</legend>
+            <button class="emoji" data-feeling="happy">&#128522;</button>
+            <button class="emoji" data-feeling="sad">&#128546;</button>
+            <button class="emoji" data-feeling="angry">&#128544;</button>
+            <button class="emoji" data-feeling="sleepy">&#128564;</button>
+            <button class="emoji" data-feeling="sick">&#129298;</button>
+          </fieldset>
+          <pre id="emojiStats"></pre>
+        </div>
       </div>
     </section>
 
-    <!-- What’s on YOUR mind sis? -->
+    <!-- Section 3: The Drop -->
+    <section class="card" id="the-drop">
+      <h2>The Drop</h2>
+      <div class="split-section">
+        <div class="tip-container">
+          <p id="cyberTip">Loading cybersecurity tips...</p>
+          <button id="nextCyberTipBtn">Next Tip</button>
+        </div>
+        <div class="image-container">
+          <img id="cyberImage" src="assets/placeholder.jpg" alt="Cyber Tip" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: What’s on YOUR mind sis? -->
     <section class="card" id="whats-on-your-mind">
       <h2>What’s on YOUR mind sis?</h2>
       <p>Your words are safe here. This is private, just for your peace.</p>
@@ -126,12 +87,12 @@
         src="https://forms.gle/D3Knh1qsujpKj7pa6"
         width="100%"
         height="600"
-        title="Anonymous message form"
         class="anon-form"
+        title="Anonymous message form"
       ></iframe>
     </section>
 
     <!-- Scripts -->
-    <script src="script.js"></script>
+    <script src="style.js"></script>
   </body>
 </html>
