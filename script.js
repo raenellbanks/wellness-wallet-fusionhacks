@@ -1,7 +1,7 @@
-/* === Wellness Wallet - script.js === */
-/* Accessibility, UX, Performance & Test-Ready Refactor by ChatGPT 🛠️ */
+// === Wellness Wallet - script.js ===
+// Accessibility, UX, Performance & Test-Ready Refactor 💅
 
-// ✅ CONFIG
+// ✅ CONFIGURATION
 const API_URL =
   "https://api.sheetbest.com/sheets/32bbc4a0-25ba-44ae-835f-2b8e6d207b9a";
 const localImages = [
@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setInitialTheme();
   restoreLastMood();
   fetchData();
+
   DOM.nextMantraBtn.addEventListener("click", nextMantra);
   DOM.playPauseBtn.addEventListener("click", toggleAudio);
   DOM.nextAudioBtn.addEventListener("click", nextAudio);
@@ -59,6 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
   DOM.nextCyberTipBtn.addEventListener("click", nextCyberTip);
   DOM.emojiContainer.addEventListener("click", handleEmojiClick);
   DOM.modeToggle.addEventListener("change", toggleTheme);
+
+  showMantra(); // fallback
+  updateEmojiResults();
 });
 
 // ✅ FETCH DATA
@@ -79,7 +83,7 @@ async function fetchData() {
   }
 }
 
-// ✅ RENDER ALL
+// ✅ RENDER UI
 function renderAll() {
   showMantra();
   showAudio();
@@ -90,8 +94,8 @@ function renderAll() {
 
 // === MANTRAS ===
 function showMantra() {
-  DOM.mantraText.textContent =
-    data.mantras[data.indexes.mantra] || "No mantras available";
+  const arr = data.mantras.length ? data.mantras : ["You are enough."];
+  DOM.mantraText.textContent = arr[data.indexes.mantra];
 }
 function nextMantra() {
   data.indexes.mantra = (data.indexes.mantra + 1) % data.mantras.length;
@@ -102,7 +106,6 @@ function nextMantra() {
 function showAudio() {
   const src = data.voiceMessages[data.indexes.audio];
   if (!src) return hideAudio();
-
   DOM.mantraAudio.src = src;
   DOM.mantraAudio.load();
   DOM.mantraAudio.style.display = "block";
@@ -125,62 +128,88 @@ function nextAudio() {
 
 // === MOOD PROMPTS ===
 function showMoodPrompt() {
-  DOM.moodPrompt.textContent =
-    data.moodPrompts[data.indexes.mood] || "No mood prompt available";
+  const arr = data.moodPrompts.length
+    ? data.moodPrompts
+    : ["How do you feel today?"];
+  DOM.moodPrompt.textContent = arr[data.indexes.mood];
 }
 function nextMoodPrompt() {
   data.indexes.mood = (data.indexes.mood + 1) % data.moodPrompts.length;
   showMoodPrompt();
 }
 
-// === EMOJI HANDLING ===
+// === EMOJI VOTING ===
 function handleEmojiClick(e) {
-  if (!e.target.classList.contains("emoji")) return;
+  const button = e.target.closest(".emoji");
+  if (!button) return;
 
-  const feeling = e.target.dataset.feeling;
+  const feeling = button.dataset.feeling;
   if (!feeling) return;
 
   data.emojiVotes[feeling]++;
   emojiClickSound.currentTime = 0;
   emojiClickSound.play();
 
-  localStorage.setItem("lastMood", feeling);
+  // Accessibility state
   [...DOM.emojiContainer.children].forEach((btn) =>
     btn.setAttribute("aria-pressed", "false")
   );
-  e.target.setAttribute("aria-pressed", "true");
+  button.setAttribute("aria-pressed", "true");
+
+  // Visual feedback
+  document
+    .querySelectorAll(".emoji")
+    .forEach((el) => el.classList.remove("selected"));
+  button.classList.add("selected");
+
+  // Save to localStorage
+  localStorage.setItem("lastMood", feeling);
 
   updateEmojiResults();
 }
-function updateEmojiResults() {
-  const total = Object.values(data.emojiVotes).reduce((a, b) => a + b, 0);
-  if (total === 0) return (DOM.emojiResults.textContent = "No data yet");
 
-  const parts = Object.entries(data.emojiVotes)
+function restoreLastMood() {
+  const feeling = localStorage.getItem("lastMood");
+  if (!feeling) return;
+  const btn = document.querySelector(`.emoji[data-feeling="${feeling}"]`);
+  if (btn) btn.classList.add("selected");
+}
+
+function updateEmojiResults() {
+  const total = Object.values(data.emojiVotes).reduce(
+    (sum, val) => sum + val,
+    0
+  );
+  if (total === 0) {
+    DOM.emojiResults.textContent = "No data yet";
+    return;
+  }
+  const results = Object.entries(data.emojiVotes)
     .filter(([_, count]) => count > 0)
     .map(
-      ([feeling, count]) =>
-        `${capitalize(feeling)}: ${((count / total) * 100).toFixed(1)}%`
-    );
-
-  DOM.emojiResults.textContent = parts.join(" | ");
+      ([mood, count]) =>
+        `${capitalize(mood)}: ${((count / total) * 100).toFixed(1)}%`
+    )
+    .join(" | ");
+  DOM.emojiResults.textContent = results;
 }
-function restoreLastMood() {
-  const last = localStorage.getItem("lastMood");
-  if (last) {
-    const btn = DOM.emojiContainer.querySelector(`[data-feeling="${last}"]`);
-    if (btn) btn.classList.add("selected");
-  }
+
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 // === CYBER TIPS ===
 function showCyberTip() {
+  const arr = data.cyberTips.length
+    ? data.cyberTips
+    : ["Protect your passwords sis!"];
   const index = data.indexes.tip;
-  DOM.cyberTip.textContent = data.cyberTips[index] || "No tip available";
+  DOM.cyberTip.textContent = arr[index];
+
   const imgName = localImages[index % localImages.length];
   const imgPath = `assets/images/${imgName}`;
   DOM.cyberImage.src = imgPath;
-  DOM.cyberImage.alt = `Related image: ${DOM.cyberTip.textContent}`;
+  DOM.cyberImage.alt = `Cyber tip visual`;
   DOM.cyberImage.onerror = () => {
     DOM.cyberImage.src = "assets/placeholder.jpg";
   };
@@ -190,20 +219,16 @@ function nextCyberTip() {
   showCyberTip();
 }
 
-// === THEME TOGGLE ===
+// === DARK MODE ===
 function toggleTheme() {
-  document.body.classList.toggle("dark", DOM.modeToggle.checked);
-  localStorage.setItem("ww-theme", DOM.modeToggle.checked ? "dark" : "light");
+  const isDark = DOM.modeToggle.checked;
+  document.body.classList.toggle("dark", isDark);
+  localStorage.setItem("ww-theme", isDark ? "dark" : "light");
 }
 function setInitialTheme() {
-  const stored = localStorage.getItem("ww-theme");
+  const saved = localStorage.getItem("ww-theme");
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const dark = stored ? stored === "dark" : prefersDark;
+  const dark = saved ? saved === "dark" : prefersDark;
   document.body.classList.toggle("dark", dark);
   DOM.modeToggle.checked = dark;
-}
-
-// === UTILS ===
-function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
 }

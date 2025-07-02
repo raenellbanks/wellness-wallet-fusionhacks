@@ -36,7 +36,11 @@
         <button id="nextMantraBtn">Next Mantra</button>
       </div>
       <div class="right">
-        <audio id="mantraAudio" controls></audio>
+        <audio
+          id="mantraAudio"
+          controls
+          aria-label="Audio player for mantras"
+        ></audio>
         <button id="playPauseBtn">Play / Pause</button>
         <button id="nextAudioBtn">Next Song</button>
       </div>
@@ -53,27 +57,52 @@
         </p>
       </div>
       <div class="right square">
-        <fieldset id="emojiContainer">
+        <fieldset id="emojiContainer" aria-label="Mood selection">
           <legend>Select your current mood</legend>
-          <button class="emoji" data-feeling="happy" aria-label="Happy mood">
-            <span class="emoji-face">&#128522;</span>
-            <span class="emoji-label">Happy</span>
+
+          <button
+            class="emoji"
+            data-feeling="happy"
+            aria-pressed="false"
+            aria-label="Happy"
+          >
+            <span class="emoji-face" aria-hidden="true">&#128522;</span>
           </button>
-          <button class="emoji" data-feeling="sad" aria-label="Sad mood">
-            <span class="emoji-face">&#128546;</span>
-            <span class="emoji-label">Sad</span>
+
+          <button
+            class="emoji"
+            data-feeling="sad"
+            aria-pressed="false"
+            aria-label="Sad"
+          >
+            <span class="emoji-face" aria-hidden="true">&#128546;</span>
           </button>
-          <button class="emoji" data-feeling="angry" aria-label="Angry mood">
-            <span class="emoji-face">&#128544;</span>
-            <span class="emoji-label">Angry</span>
+
+          <button
+            class="emoji"
+            data-feeling="angry"
+            aria-pressed="false"
+            aria-label="Angry"
+          >
+            <span class="emoji-face" aria-hidden="true">&#128544;</span>
           </button>
-          <button class="emoji" data-feeling="sleepy" aria-label="Sleepy mood">
-            <span class="emoji-face">&#128564;</span>
-            <span class="emoji-label">Sleepy</span>
+
+          <button
+            class="emoji"
+            data-feeling="sleepy"
+            aria-pressed="false"
+            aria-label="Sleepy"
+          >
+            <span class="emoji-face" aria-hidden="true">&#128564;</span>
           </button>
-          <button class="emoji" data-feeling="sick" aria-label="Sick mood">
-            <span class="emoji-face">&#129298;</span>
-            <span class="emoji-label">Sick</span>
+
+          <button
+            class="emoji"
+            data-feeling="sick"
+            aria-pressed="false"
+            aria-label="Sick"
+          >
+            <span class="emoji-face" aria-hidden="true">&#129298;</span>
           </button>
         </fieldset>
         <div id="emojiResults">No data yet</div>
@@ -89,11 +118,10 @@
       </div>
       <div class="right">
         <img
-          id="dropImage"
+          id="cyberImage"
           src="assets/images/waterfall.jpg"
-          alt="Drop"
-          class="drop-thumb"
-          loading="lazy"
+          alt="Cybersecurity awareness visual"
+          class="cyber-image"
         />
       </div>
     </section>
@@ -104,10 +132,9 @@
       <p>Your words are safe here. This is private, just for your peace.</p>
       <iframe
         src="https://forms.gle/D3Knh1qsujpKj7pa6"
-        width="100%"
-        height="600"
         title="Anonymous message form"
         class="anon-form"
+        loading="lazy"
       ></iframe>
     </section>
 
