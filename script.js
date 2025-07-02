@@ -1,13 +1,9 @@
-// SheetBest API endpoint
+/* === Wellness Wallet - script.js === */
+/* Accessibility, UX, Performance & Test-Ready Refactor by ChatGPT 🛠️ */
+
+// ✅ CONFIG
 const API_URL =
   "https://api.sheetbest.com/sheets/32bbc4a0-25ba-44ae-835f-2b8e6d207b9a";
-
-// Data arrays
-let mantras = [];
-let voiceMessages = [];
-let moodPrompts = [];
-let cyberTips = [];
-// Your local image filenames for The Drop section
 const localImages = [
   "coffeedate.jpg",
   "cybergirl.jpg",
@@ -22,282 +18,192 @@ const localImages = [
   "selfcare.jpg",
   "sweethtooth.jpg",
 ];
+const emojiClickSound = new Audio("assets/sounds/click.mp3");
 
-let mantraIndex = 0;
-let audioIndex = 0;
-let moodIndex = 0;
-let cyberTipIndex = 0;
-
-// Emoji vote counts
-const emojiVotes = {
-  happy: 0,
-  sad: 0,
-  angry: 0,
-  sleepy: 0,
-  sick: 0,
+// ✅ STATE
+let data = {
+  mantras: [],
+  voiceMessages: [],
+  moodPrompts: [],
+  cyberTips: [],
+  emojiVotes: { happy: 0, sad: 0, angry: 0, sleepy: 0, sick: 0 },
+  indexes: { mantra: 0, audio: 0, mood: 0, tip: 0 },
 };
 
-// DOM elements
-const mantraTextEl = document.getElementById("mantraText");
-const mantraAudioEl = document.getElementById("mantraAudio");
-const nextMantraBtn = document.getElementById("nextMantraBtn");
+// ✅ DOM
+const DOM = {
+  mantraText: document.getElementById("mantraText"),
+  mantraAudio: document.getElementById("mantraAudio"),
+  nextMantraBtn: document.getElementById("nextMantraBtn"),
+  playPauseBtn: document.getElementById("playPauseBtn"),
+  nextAudioBtn: document.getElementById("nextAudioBtn"),
+  moodPrompt: document.getElementById("moodPrompt"),
+  nextPromptBtn: document.getElementById("nextPromptBtn"),
+  emojiContainer: document.getElementById("emojiContainer"),
+  emojiResults: document.getElementById("emojiResults"),
+  cyberTip: document.getElementById("cyberTip"),
+  cyberImage: document.getElementById("cyberImage"),
+  nextCyberTipBtn: document.getElementById("nextCyberTipBtn"),
+  modeToggle: document.getElementById("modeToggle"),
+};
 
-const playPauseBtn = document.getElementById("playPauseBtn");
-const nextAudioBtn = document.getElementById("nextAudioBtn");
+// ✅ INIT
+document.addEventListener("DOMContentLoaded", () => {
+  setInitialTheme();
+  restoreLastMood();
+  fetchData();
+  DOM.nextMantraBtn.addEventListener("click", nextMantra);
+  DOM.playPauseBtn.addEventListener("click", toggleAudio);
+  DOM.nextAudioBtn.addEventListener("click", nextAudio);
+  DOM.nextPromptBtn.addEventListener("click", nextMoodPrompt);
+  DOM.nextCyberTipBtn.addEventListener("click", nextCyberTip);
+  DOM.emojiContainer.addEventListener("click", handleEmojiClick);
+  DOM.modeToggle.addEventListener("change", toggleTheme);
+});
 
-const moodPromptEl = document.getElementById("moodPrompt");
-const nextPromptBtn = document.getElementById("nextPromptBtn");
-
-const emojiContainer = document.getElementById("emojiContainer");
-const emojiResultsEl = document.getElementById("emojiResults");
-
-const cyberTipEl = document.getElementById("cyberTip");
-const cyberImageEl = document.getElementById("cyberImage");
-const nextCyberTipBtn = document.getElementById("nextCyberTipBtn");
-
-// Add this near the top
-const emojiClickSound = new Audio("assets/sounds/click.mp3"); // Add a short click sound to your assets
-
-// Use your local images only
-const images = [
-  "assets/images/waterfall.jpg",
-  "assets/images/coffeedate.jpg",
-  "assets/images/cybergirl.jpg",
-  "assets/images/electrica.jpg",
-  "assets/images/generations.jpg",
-  "assets/images/hackergirl.jpg",
-  "assets/images/letthegoodtimesroll.jpg",
-  "assets/images/love.jpg",
-  "assets/images/namaste.jpg",
-  "assets/images/prettysmile.jpg",
-  "assets/images/rideordie.jpg",
-  "assets/images/selfcare.jpg",
-  "assets/images/sweettooth.jpg",
-];
-
-let dropImageIndex = 0;
-
-// Shuffle helper
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-}
-
-// Fetch data from API
+// ✅ FETCH DATA
 async function fetchData() {
   try {
     const res = await fetch(API_URL);
-    if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
-    const data = await res.json();
-
-    mantras = data.map((row) => row.daily_mantra).filter(Boolean);
-    voiceMessages = data.map((row) => row.voice_message).filter(Boolean);
-    moodPrompts = data.map((row) => row.mood_prompt).filter(Boolean);
-    cyberTips = data.map((row) => row.cyber_tip).filter(Boolean);
-
-    // Fallbacks
-    if (mantras.length === 0) mantras = ["No mantras available"];
-    if (moodPrompts.length === 0) moodPrompts = ["No mood prompts available"];
-    if (cyberTips.length === 0) cyberTips = ["No cyber tips available"];
-
-    initUI();
+    const sheet = await res.json();
+    data.mantras = sheet.map((r) => r.daily_mantra).filter(Boolean);
+    data.voiceMessages = sheet.map((r) => r.voice_message).filter(Boolean);
+    data.moodPrompts = sheet.map((r) => r.mood_prompt).filter(Boolean);
+    data.cyberTips = sheet.map((r) => r.cyber_tip).filter(Boolean);
+    renderAll();
   } catch (err) {
     console.error("Error loading data:", err);
-    mantraTextEl.textContent = "Failed to load mantras.";
-    moodPromptEl.textContent = "Failed to load mood prompts.";
-    cyberTipEl.textContent = "Failed to load cyber tips.";
+    DOM.mantraText.textContent = "Failed to load mantras.";
+    DOM.moodPrompt.textContent = "Failed to load mood prompts.";
+    DOM.cyberTip.textContent = "Failed to load cyber tips.";
   }
 }
 
-// Initialize UI with first items
-function initUI() {
+// ✅ RENDER ALL
+function renderAll() {
   showMantra();
   showAudio();
   showMoodPrompt();
   showCyberTip();
   updateEmojiResults();
-  showDropImage();
 }
 
-// Food for the Soul - Mantras
+// === MANTRAS ===
 function showMantra() {
-  mantraTextEl.textContent = mantras[mantraIndex];
+  DOM.mantraText.textContent =
+    data.mantras[data.indexes.mantra] || "No mantras available";
 }
-
-// Food for the Soul - Audio
-function showAudio() {
-  if (voiceMessages.length === 0) {
-    mantraAudioEl.style.display = "none";
-    playPauseBtn.style.display = "none";
-    nextAudioBtn.style.display = "none";
-    return;
-  }
-
-  mantraAudioEl.style.display = "block";
-  playPauseBtn.style.display = "inline-block";
-  nextAudioBtn.style.display = "inline-block";
-
-  mantraAudioEl.src = voiceMessages[audioIndex];
-  mantraAudioEl.load();
-}
-
-// Food for the Soul - Next Mantra
-nextMantraBtn.addEventListener("click", () => {
-  mantraIndex = (mantraIndex + 1) % mantras.length;
+function nextMantra() {
+  data.indexes.mantra = (data.indexes.mantra + 1) % data.mantras.length;
   showMantra();
-});
-
-// Play/Pause Audio
-playPauseBtn.addEventListener("click", () => {
-  if (mantraAudioEl.paused) {
-    mantraAudioEl.play();
-  } else {
-    mantraAudioEl.pause();
-  }
-});
-
-// Next Song
-nextAudioBtn.addEventListener("click", () => {
-  audioIndex = (audioIndex + 1) % voiceMessages.length;
-  showAudio();
-  mantraAudioEl.play();
-});
-
-// Stop and Reflect - Mood Prompts
-function showMoodPrompt() {
-  moodPromptEl.textContent = moodPrompts[moodIndex];
 }
 
-nextPromptBtn.addEventListener("click", () => {
-  moodIndex = (moodIndex + 1) % moodPrompts.length;
-  showMoodPrompt();
-});
+// === AUDIO ===
+function showAudio() {
+  const src = data.voiceMessages[data.indexes.audio];
+  if (!src) return hideAudio();
 
-// Emoji click & voting logic
-emojiContainer.addEventListener("click", (e) => {
+  DOM.mantraAudio.src = src;
+  DOM.mantraAudio.load();
+  DOM.mantraAudio.style.display = "block";
+  DOM.playPauseBtn.style.display = "inline-block";
+  DOM.nextAudioBtn.style.display = "inline-block";
+}
+function hideAudio() {
+  DOM.mantraAudio.style.display = "none";
+  DOM.playPauseBtn.style.display = "none";
+  DOM.nextAudioBtn.style.display = "none";
+}
+function toggleAudio() {
+  DOM.mantraAudio.paused ? DOM.mantraAudio.play() : DOM.mantraAudio.pause();
+}
+function nextAudio() {
+  data.indexes.audio = (data.indexes.audio + 1) % data.voiceMessages.length;
+  showAudio();
+  DOM.mantraAudio.play();
+}
+
+// === MOOD PROMPTS ===
+function showMoodPrompt() {
+  DOM.moodPrompt.textContent =
+    data.moodPrompts[data.indexes.mood] || "No mood prompt available";
+}
+function nextMoodPrompt() {
+  data.indexes.mood = (data.indexes.mood + 1) % data.moodPrompts.length;
+  showMoodPrompt();
+}
+
+// === EMOJI HANDLING ===
+function handleEmojiClick(e) {
   if (!e.target.classList.contains("emoji")) return;
 
-  // Update vote counts
-  const feeling = e.target.getAttribute("data-feeling");
+  const feeling = e.target.dataset.feeling;
   if (!feeling) return;
 
-  emojiVotes[feeling] = (emojiVotes[feeling] || 0) + 1;
+  data.emojiVotes[feeling]++;
+  emojiClickSound.currentTime = 0;
+  emojiClickSound.play();
 
-  // Update pressed state for accessibility
-  [...emojiContainer.children].forEach((btn) =>
+  localStorage.setItem("lastMood", feeling);
+  [...DOM.emojiContainer.children].forEach((btn) =>
     btn.setAttribute("aria-pressed", "false")
   );
   e.target.setAttribute("aria-pressed", "true");
 
   updateEmojiResults();
-});
+}
+function updateEmojiResults() {
+  const total = Object.values(data.emojiVotes).reduce((a, b) => a + b, 0);
+  if (total === 0) return (DOM.emojiResults.textContent = "No data yet");
 
-// Save on click
-document.querySelectorAll(".emoji").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    localStorage.setItem("lastMood", btn.dataset.feeling);
-  });
-});
+  const parts = Object.entries(data.emojiVotes)
+    .filter(([_, count]) => count > 0)
+    .map(
+      ([feeling, count]) =>
+        `${capitalize(feeling)}: ${((count / total) * 100).toFixed(1)}%`
+    );
 
-// Restore on load
-window.addEventListener("DOMContentLoaded", () => {
-  const lastMood = localStorage.getItem("lastMood");
-  if (lastMood) {
-    const btn = document.querySelector(`.emoji[data-feeling="${lastMood}"]`);
+  DOM.emojiResults.textContent = parts.join(" | ");
+}
+function restoreLastMood() {
+  const last = localStorage.getItem("lastMood");
+  if (last) {
+    const btn = DOM.emojiContainer.querySelector(`[data-feeling="${last}"]`);
     if (btn) btn.classList.add("selected");
   }
-});
-
-// Update emoji percentage display
-function updateEmojiResults() {
-  const totalVotes = Object.values(emojiVotes).reduce((a, b) => a + b, 0);
-  if (totalVotes === 0) {
-    emojiResultsEl.textContent = "No data yet";
-    return;
-  }
-
-  // Build results string
-  const parts = [];
-  for (const [feeling, count] of Object.entries(emojiVotes)) {
-    if (count > 0) {
-      const percent = ((count / totalVotes) * 100).toFixed(1);
-      parts.push(`${capitalize(feeling)}: ${percent}%`);
-    }
-  }
-  emojiResultsEl.textContent = parts.length ? parts.join(" | ") : "No data yet";
 }
 
-// Helper to capitalize first letter
+// === CYBER TIPS ===
+function showCyberTip() {
+  const index = data.indexes.tip;
+  DOM.cyberTip.textContent = data.cyberTips[index] || "No tip available";
+  const imgName = localImages[index % localImages.length];
+  const imgPath = `assets/images/${imgName}`;
+  DOM.cyberImage.src = imgPath;
+  DOM.cyberImage.alt = `Related image: ${DOM.cyberTip.textContent}`;
+  DOM.cyberImage.onerror = () => {
+    DOM.cyberImage.src = "assets/placeholder.jpg";
+  };
+}
+function nextCyberTip() {
+  data.indexes.tip = (data.indexes.tip + 1) % data.cyberTips.length;
+  showCyberTip();
+}
+
+// === THEME TOGGLE ===
+function toggleTheme() {
+  document.body.classList.toggle("dark", DOM.modeToggle.checked);
+  localStorage.setItem("ww-theme", DOM.modeToggle.checked ? "dark" : "light");
+}
+function setInitialTheme() {
+  const stored = localStorage.getItem("ww-theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const dark = stored ? stored === "dark" : prefersDark;
+  document.body.classList.toggle("dark", dark);
+  DOM.modeToggle.checked = dark;
+}
+
+// === UTILS ===
 function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
-
-// The Drop - Cyber Tips + Images
-function showCyberTip() {
-  cyberTipEl.textContent = cyberTips[cyberTipIndex];
-  // Use local images for display
-  const imgName = localImages[cyberTipIndex % localImages.length];
-  const imgPath = `assets/images/${imgName}`;
-  cyberImageEl.src = imgPath;
-  cyberImageEl.alt = `Image related to cyber tip: ${cyberTips[cyberTipIndex]}`;
-
-  // Fallback if image doesn't load
-  cyberImageEl.onerror = () => {
-    cyberImageEl.src = "assets/placeholder.jpg";
-  };
-}
-
-nextCyberTipBtn.addEventListener("click", () => {
-  cyberTipIndex = (cyberTipIndex + 1) % cyberTips.length;
-  showCyberTip();
-});
-
-// Drop image logic
-function showDropImage() {
-  const img = document.getElementById("dropImage");
-  if (images.length > 0) {
-    img.src = images[dropImageIndex];
-    img.alt = "Wellness visual";
-  }
-}
-
-document.getElementById("nextDropImageBtn").addEventListener("click", () => {
-  dropImageIndex = (dropImageIndex + 1) % images.length;
-  showDropImage();
-});
-
-// Dark mode toggle logic (from before)
-const modeToggle = document.getElementById("modeToggle");
-function setInitialTheme() {
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const storedTheme = localStorage.getItem("ww-theme");
-  if (storedTheme) {
-    document.body.classList.toggle("dark", storedTheme === "dark");
-    modeToggle.checked = storedTheme === "dark";
-  } else {
-    document.body.classList.toggle("dark", prefersDark);
-    modeToggle.checked = prefersDark;
-  }
-}
-
-modeToggle.addEventListener("change", () => {
-  document.body.classList.toggle("dark", modeToggle.checked);
-  localStorage.setItem("ww-theme", modeToggle.checked ? "dark" : "light");
-});
-
-// Initialize app
-window.addEventListener("DOMContentLoaded", () => {
-  setInitialTheme();
-  fetchData();
-
-  document.querySelectorAll(".emoji").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      emojiClickSound.currentTime = 0;
-      emojiClickSound.play();
-    });
-  });
-});
-//
-// End of file
