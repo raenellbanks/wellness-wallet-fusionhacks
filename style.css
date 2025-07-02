@@ -1,0 +1,260 @@
+/* === Fonts & base styles === */
+
+body {
+  font-family: "Merienda", cursive;
+  font-size: 15px;
+  margin: 0;
+  background: url("docs/massage-therapy-1584711_1920.jpg") no-repeat center
+    center fixed;
+  background-size: cover;
+  color: #5a3e36; /* warm brown */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+h1.header-title {
+  font-family: "Pacifico", cursive;
+  font-size: 96px;
+  text-align: center;
+  margin: 1rem 0 0.5rem 0;
+  color: #ff726f; /* coral peach */
+  position: relative;
+}
+
+.sparkle {
+  animation: sparkle 2s infinite ease-in-out alternate;
+  color: #ffc107;
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* === Toggle switch container === */
+.toggle-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+/* === Toggle switch === */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #ffb74d;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* === Cards (sections) === */
+.card {
+  background: rgba(255 255 255 / 0.8);
+  max-width: 900px;
+  margin: 1.5rem auto;
+  border-radius: 1.5rem;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 0 25px rgba(255, 193, 7, 0.25);
+  transition: background-color 0.3s ease;
+  color: #5a3e36;
+}
+
+/* === Split layout for sections with left/right side === */
+.split {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.split > .left,
+.split > .right {
+  flex: 1 1 45%;
+  min-width: 280px;
+}
+
+/* === Make the Stop and Reflect right side a square === */
+#stop-and-reflect .right.square {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #fff9e6;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 0 10px #ffc107aa;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+/* === Headings === */
+.card h2 {
+  color: #ff6f61;
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+/* === Buttons === */
+button {
+  background: transparent;
+  border: 2px solid #ffb74d;
+  border-radius: 20px;
+  padding: 0.5rem 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #5a3e36;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  margin-top: 1rem;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+button:hover,
+button:focus {
+  background-color: #ffb74d;
+  color: #fff;
+  box-shadow: 0 0 15px #ffb74d;
+  outline: none;
+}
+
+/* === Emojis === */
+#emojiContainer {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 4rem; /* BIG */
+  justify-content: center;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.emoji {
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  border-radius: 50%;
+  padding: 0.3rem;
+  background: transparent;
+  border: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.emoji:hover,
+.emoji:focus,
+.emoji[aria-pressed="true"] {
+  filter: drop-shadow(0 0 15px #ffc107);
+  transform: scale(1.4);
+  outline: none;
+}
+
+/* Emoji Results Text */
+#emojiResults {
+  margin-top: 1rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #b8860b; /* goldenrod */
+  text-align: center;
+}
+
+/* Journal prompt text */
+.journal-text {
+  font-style: italic;
+  margin-top: 1rem;
+  color: #7a5a42;
+  text-align: center;
+}
+
+/* === Image styles === */
+#cyberImage {
+  max-width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
+  margin-top: 1rem;
+  object-fit: cover;
+  height: 250px;
+}
+
+/* === Audio controls wrapper in Food for the Soul right side === */
+#food-for-the-soul .right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#food-for-the-soul audio {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 1rem;
+}
+
+/* === Dark Mode === */
+body.dark {
+  background-color: #2e2e2e;
+  color: #ddd1c6;
+}
+
+body.dark .card {
+  background: rgba(50 50 50 / 0.85);
+  box-shadow: 0 0 20px #ffb74d;
+  color: #ddd1c6;
+}
+
+body.dark button {
+  border-color: #ffc107;
+  color: #ffc107;
+}
+
+body.dark button:hover,
+body.dark button:focus {
+  background-color: #ffc107;
+  color: #2e2e2e;
+  box-shadow: 0 0 20px #ffc107;
+}
+
+/* === Iframe styling for anonymous form === */
+.anon-form {
+  border: none;
+  border-radius: 1rem;
+  height: 600px;
+  margin-top: 1rem;
+  box-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
+}

@@ -1,10 +1,10 @@
 # 💖 Wellness Wallet
 
-## “Where cybersecurity meets soul care.”
+## Where cybersecurity meets soul care
 
-Welcome to **Wellness Wallet**, a digital sanctuary built for _all_ women — especially those juggling the chaos of daily life while trying to protect their peace. This project is my love letter to every woman who needed a soft place to land, a moment to breathe, and a lil' reminder that _you are worth securing_ — digitally and emotionally.
+Welcome to **Wellness Wallet**, your digital sanctuary crafted for women who hustle hard and cherish peace just as fiercely. This project is my shoutout to every woman juggling life’s madness — giving you a soft place to land, a moment to breathe, and a damn good reminder that _you deserve security_, both online and in your heart.
 
-Live Site 👉 [https://raenellbanks.github.io/wellness-wallet-fusionhacks/](https://raenellbanks.github.io/wellness-wallet-fusionhacks/)
+🌐 **Live Site:** [https://raenellbanks.github.io/wellness-wallet-fusionhacks/](https://raenellbanks.github.io/wellness-wallet-fusionhacks/)
 
 ![Wellness Wallet Preview](assets/og-preview.jpg)
 
@@ -12,70 +12,69 @@ Live Site 👉 [https://raenellbanks.github.io/wellness-wallet-fusionhacks/](htt
 
 ## 🌻 Why I Built This
 
-I’m **Raenell Banks**, a cybersecurity analyst-in-training who’s blending tech with tenderness. I built Wellness Wallet for the [FusionHacks 2025 Hackathon](https://fusionhacks.devpost.com/) to explore how we can turn wellness into an interactive, empowering, and safe online experience — especially for women from underrepresented communities.
+Hey, I’m **Raenell Banks**, a cybersecurity analyst-in-training with a passion for mixing tech with tenderness. I built Wellness Wallet for the [FusionHacks 2025 Hackathon](https://fusionhacks.devpost.com/) to create a space where wellness and digital safety collide — especially for women from underrepresented communities who deserve both empowerment and ease.
 
 ---
 
-## 💡 What Wellness Wallet Does
+## 💡 What It Does
 
-Wellness Wallet is a single-page web app that helps you:
+Wellness Wallet is a sleek single-page app that helps you:
 
-- 🌞 Start your day with **daily mantras** and soulful audio
-- 💬 Reflect on your emotions with **interactive mood check-ins**
-- 🔐 Learn **bite-sized cybersecurity tips** without the tech headache
-- 🕊️ Drop anonymous thoughts into a safe space — no judgment, all peace
-
----
-
-## 🛠️ Built With Love Using
-
-| Tool                   | What It Does                                                           |
-| ---------------------- | ---------------------------------------------------------------------- |
-| **HTML/CSS/JS**        | Custom front-end web build from scratch                                |
-| **Google Sheets**      | Backend data storage (mantras, moods, tips, audio)                     |
-| **Sheet.best API**     | Pulls live data from the Google Sheet into the site                    |
-| **VS Code**            | The home base for coding and styling it all up                         |
-| **GitHub Pages**       | Live deployment for anyone to access 24/7                              |
-| **Netlify (optional)** | Secondary deployment option with meta polish, SEO, and preview control |
-| **Canva**              | Designed the `og-preview.jpg` for social sharing                       |
+- 🌞 Kick off your day with **daily mantras** and soothing audio vibes
+- 💬 Tune into your feelings with **interactive mood check-ins** (and big-ass emojis)
+- 🔐 Get **bite-sized cybersecurity tips** that don’t talk over your head
+- 🕊️ Drop anonymous thoughts in a safe zone where your words stay sacred
 
 ---
 
-## ✨ What’s New
+## 🛠️ Built With Love (and Code)
 
-- ✅ Split sections (side-by-side layout) for better readability
-- ✅ Animated emoji reactions + percentage tracker for mood check-ins
-- ✅ “Play” button for mantras with custom audio player
-- ✅ Randomized cybersecurity tips + images that don’t quit
-- ✅ Open Graph meta tags for **social media preview**
-- ✅ Responsive design + dark/light mode toggle
-- ✅ Custom fonts: _Pacifico_ for header, _Merienda_ for body
-- ✅ Floral aesthetic & gentle animations
-
----
-
-## 🎯 Goals
-
-- Encourage emotional wellness for women of all backgrounds
-- Promote cybersecurity awareness in a soft, relatable way
-- Create a platform that _feels_ like self-care, not another chore
+| Tool               | Purpose                                                   |
+| ------------------ | --------------------------------------------------------- |
+| **HTML/CSS/JS**    | Custom frontend magic from scratch                        |
+| **Google Sheets**  | Backend data hub for mantras, moods, tips, and audio      |
+| **Sheet.best API** | Live data fetching from Google Sheets                     |
+| **VS Code**        | Where the magic happens—coding and styling powerhouse     |
+| **GitHub Pages**   | Hosting and deployment for 24/7 access                    |
+| **Netlify** (opt)  | Optional deploy with extra polish, previews, and SEO      |
+| **Canva**          | Designed the gorgeous social preview image (`og-preview`) |
 
 ---
 
-## 📬 Contact Me
+## ✨ What’s Fresh
 
-- 📧 Email: [raenellbanks@gmail.com](mailto:raenellbanks@gmail.com)
-- 💼 Portfolio: [https://raenellbanks.github.io](https://raenellbanks.github.io)
-- 💻 GitHub: [github.com/raenellbanks](https://github.com/raenellbanks)
-- 🧠 Currently learning: Merit America’s Google Cybersecurity Certificate
-
----
-
-## 🙌🏽 Final Word
-
-**This ain’t just a hackathon project. It’s a movement.**  
-For every woman protecting her vibe, her voice, and her vision — Wellness Wallet is here for you.
+- ✅ Side-by-side splits for clearer, cleaner layouts
+- ✅ Animated emoji reactions plus a real-time percentage tracker
+- ✅ Custom “Play” and “Next Song” buttons for mantra audio
+- ✅ Cyber tips randomly loaded with slick, local images
+- ✅ Open Graph tags so your share looks 🔥 on socials
+- ✅ Responsive design with seamless dark/light mode toggle
+- ✅ Fonts that pop: _Pacifico_ for headers, _Merienda_ for everything else
+- ✅ Soft floral vibe with subtle animations for a chill feel
 
 ---
 
-🛠️ Built with love, sass, and hella intention by **Raenell Banks**
+## 🎯 The Mission
+
+- Boost emotional wellness for women from all walks of life
+- Demystify cybersecurity in a friendly, accessible way
+- Build a space that _feels_ like self-care, not just another app
+
+---
+
+## 📬 Hit Me Up
+
+- 📧 [raenellbanks@gmail.com](mailto:raenellbanks@gmail.com)
+- 💼 Portfolio: [raenellbanks.github.io](https://raenellbanks.github.io)
+- 🐙 GitHub: [github.com/raenellbanks](https://github.com/raenellbanks)
+- 🎓 Currently leveling up with Merit America’s Google Cybersecurity Certificate
+
+---
+
+## 🙌🏽 Parting Words
+
+This ain’t just a hackathon project — it’s a **movement**. For every woman out here protecting her vibe, voice, and vision, Wellness Wallet’s got your back.
+
+---
+
+🛠️ Made with love, sass, and straight-up intention by **Raenell Banks**

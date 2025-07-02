@@ -1,135 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Wellness Wallet</title>
+
     <!-- Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Merienda&family=Pacifico&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Merienda:ital,wght@1,700&family=Pacifico&display=swap"
       rel="stylesheet"
     />
+
     <!-- Styles -->
     <link rel="stylesheet" href="style.css" />
-    <!-- Favicon -->
-    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
   </head>
   <body>
     <header>
-      <h1>
-        <span class="sparkle">&#10024;</span>
-        <span class="ww-title">Wellness Wallet</span>
+      <h1 class="header-title">
+        <span class="sparkle">&#10024;</span> Wellness Wallet
         <span class="sparkle">&#10024;</span>
       </h1>
       <div class="toggle-container">
-        <label class="switch">
-          <input
-            type="checkbox"
-            id="modeToggle"
-            aria-label="Toggle dark mode"
-          />
-          <span class="slider"></span>
-        </label>
+        <input type="checkbox" id="modeToggle" aria-label="Toggle dark mode" />
+        <label class="switch" for="modeToggle"
+          ><span class="slider"></span
+        ></label>
       </div>
     </header>
 
     <!-- Section 1: Food for the Soul -->
-    <section class="card split-section" id="food-for-the-soul">
-      <div class="mantra-container">
+    <section class="card split" id="food-for-the-soul">
+      <div class="left">
         <h2>Food for the Soul</h2>
         <p id="mantraText">Loading mantras...</p>
-        <button id="nextMantraBtn" type="button">Next Mantra</button>
+        <button id="nextMantraBtn">Next Mantra</button>
       </div>
-      <div class="music-container">
+      <div class="right">
         <audio id="mantraAudio" controls></audio>
-        <button id="playMusicBtn" type="button">Play</button>
-        <button id="nextSongBtn" type="button">Next Song</button>
+        <button id="playPauseBtn">Play / Pause</button>
+        <button id="nextAudioBtn">Next Song</button>
       </div>
     </section>
 
     <!-- Section 2: STOP and Reflect -->
-    <section class="card square-card split-section" id="stop-and-reflect">
-      <div class="prompt-container">
+    <section class="card split" id="stop-and-reflect">
+      <div class="left">
         <h2>STOP and Reflect</h2>
         <p id="moodPrompt">Loading mood prompts...</p>
-        <button id="nextMoodPromptBtn" type="button">Next</button>
-        <textarea
-          id="customMoodPrompt"
-          class="reflection-textarea"
-          placeholder="Write your own reflection or prompt here..."
-          aria-label="Custom mood prompt"
-          rows="6"
-          maxlength="1000"
-        ></textarea>
+        <button id="nextPromptBtn">Next Prompt</button>
+        <p class="journal-text">
+          Grab your journal and write down your thoughts!
+        </p>
       </div>
-      <div class="emoji-box">
+      <div class="right square">
         <fieldset id="emojiContainer">
           <legend>Select your current mood</legend>
-          <button
-            class="emoji"
-            data-feeling="happy"
-            type="button"
-            aria-pressed="false"
-            aria-label="Happy"
-          >
-            &#128522;
-          </button>
-          <button
-            class="emoji"
-            data-feeling="sad"
-            type="button"
-            aria-pressed="false"
-            aria-label="Sad"
-          >
-            &#128546;
-          </button>
-          <button
-            class="emoji"
-            data-feeling="angry"
-            type="button"
-            aria-pressed="false"
-            aria-label="Angry"
-          >
-            &#128544;
-          </button>
-          <button
-            class="emoji"
-            data-feeling="sleepy"
-            type="button"
-            aria-pressed="false"
-            aria-label="Sleepy"
-          >
-            &#128564;
-          </button>
-          <button
-            class="emoji"
-            data-feeling="sick"
-            type="button"
-            aria-pressed="false"
-            aria-label="Sick"
-          >
-            &#129298;
-          </button>
+          <button class="emoji" data-feeling="happy">&#128522;</button>
+          <button class="emoji" data-feeling="sad">&#128546;</button>
+          <button class="emoji" data-feeling="angry">&#128544;</button>
+          <button class="emoji" data-feeling="sleepy">&#128564;</button>
+          <button class="emoji" data-feeling="sick">&#129298;</button>
         </fieldset>
-        <pre id="emojiStats"></pre>
+        <div id="emojiResults">No data yet</div>
       </div>
     </section>
 
     <!-- Section 3: The Drop -->
-    <section class="card split-section" id="the-drop">
-      <div class="tip-text">
+    <section class="card split" id="the-drop">
+      <div class="left">
         <h2>The Drop</h2>
         <p id="cyberTip">Loading cybersecurity tips...</p>
-        <button id="nextCyberTipBtn" type="button">Next Tip</button>
+        <button id="nextCyberTipBtn">Next Tip</button>
       </div>
-      <div class="tip-image">
+      <div class="right">
         <img
-          id="dropImage"
-          src="assets/images/waterfall.jpg"
-          alt="Drop"
-          class="drop-thumb"
+          id="cyberImage"
+          src="assets/placeholder.jpg"
+          alt="Cybersecurity tip illustration"
         />
-        <button id="nextDropImageBtn" type="button">Next Image</button>
       </div>
     </section>
 
@@ -146,23 +94,6 @@
       ></iframe>
     </section>
 
-    <script>
-      document
-        .getElementById("modeToggle")
-        .addEventListener("change", function () {
-          document.body.classList.toggle("dark", this.checked);
-        });
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
-
-<style>
-  body.dark {
-    background-color: #2e2e2e;
-    color: #fff;
-  }
-  body.dark .card {
-    background: rgba(50, 50, 50, 0.85);
-    color: #fff;
-  }
-</style>
