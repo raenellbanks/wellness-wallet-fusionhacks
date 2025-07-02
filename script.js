@@ -55,6 +55,9 @@ const cyberTipEl = document.getElementById("cyberTip");
 const cyberImageEl = document.getElementById("cyberImage");
 const nextCyberTipBtn = document.getElementById("nextCyberTipBtn");
 
+// Add this near the top
+const emojiClickSound = new Audio("assets/sounds/click.mp3"); // Add a short click sound to your assets
+
 // Fetch data from API
 async function fetchData() {
   try {
@@ -163,6 +166,22 @@ emojiContainer.addEventListener("click", (e) => {
   updateEmojiResults();
 });
 
+// Save on click
+document.querySelectorAll(".emoji").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    localStorage.setItem("lastMood", btn.dataset.feeling);
+  });
+});
+
+// Restore on load
+window.addEventListener("DOMContentLoaded", () => {
+  const lastMood = localStorage.getItem("lastMood");
+  if (lastMood) {
+    const btn = document.querySelector(`.emoji[data-feeling="${lastMood}"]`);
+    if (btn) btn.classList.add("selected");
+  }
+});
+
 // Update emoji percentage display
 function updateEmojiResults() {
   const totalVotes = Object.values(emojiVotes).reduce((a, b) => a + b, 0);
@@ -223,6 +242,13 @@ modeToggle.addEventListener("change", () => {
 window.addEventListener("DOMContentLoaded", () => {
   setInitialTheme();
   fetchData();
+
+  document.querySelectorAll(".emoji").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      emojiClickSound.currentTime = 0;
+      emojiClickSound.play();
+    });
+  });
 });
 //
-// End of
+// End of file

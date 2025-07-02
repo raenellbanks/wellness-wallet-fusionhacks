@@ -55,23 +55,23 @@
       <div class="right square">
         <fieldset id="emojiContainer">
           <legend>Select your current mood</legend>
-          <button class="emoji" data-feeling="happy">
+          <button class="emoji" data-feeling="happy" aria-label="Happy mood">
             <span class="emoji-face">&#128522;</span>
             <span class="emoji-label">Happy</span>
           </button>
-          <button class="emoji" data-feeling="sad">
+          <button class="emoji" data-feeling="sad" aria-label="Sad mood">
             <span class="emoji-face">&#128546;</span>
             <span class="emoji-label">Sad</span>
           </button>
-          <button class="emoji" data-feeling="angry">
+          <button class="emoji" data-feeling="angry" aria-label="Angry mood">
             <span class="emoji-face">&#128544;</span>
             <span class="emoji-label">Angry</span>
           </button>
-          <button class="emoji" data-feeling="sleepy">
+          <button class="emoji" data-feeling="sleepy" aria-label="Sleepy mood">
             <span class="emoji-face">&#128564;</span>
             <span class="emoji-label">Sleepy</span>
           </button>
-          <button class="emoji" data-feeling="sick">
+          <button class="emoji" data-feeling="sick" aria-label="Sick mood">
             <span class="emoji-face">&#129298;</span>
             <span class="emoji-label">Sick</span>
           </button>
@@ -89,9 +89,11 @@
       </div>
       <div class="right">
         <img
-          id="cyberImage"
-          src="assets/placeholder.jpg"
-          alt="Cybersecurity tip illustration"
+          id="dropImage"
+          src="assets/images/waterfall.jpg"
+          alt="Drop"
+          class="drop-thumb"
+          loading="lazy"
         />
       </div>
     </section>
