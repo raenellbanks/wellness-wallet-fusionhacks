@@ -1,81 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Wellness Wallet</title>
-
     <!-- Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Merienda:ital,wght@1,700&family=Pacifico&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Merienda&family=Pacifico&display=swap"
       rel="stylesheet"
     />
-
     <!-- Styles -->
-    <link rel="stylesheet" href="script.css" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Favicon -->
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
   </head>
   <body>
     <header>
       <h1>
         <span class="sparkle">&#10024;</span>
-        Wellness Wallet
+        <span class="ww-title">Wellness Wallet</span>
         <span class="sparkle">&#10024;</span>
       </h1>
       <div class="toggle-container">
-        <input type="checkbox" id="modeToggle" aria-label="Toggle dark mode" />
-        <label class="switch" for="modeToggle"
-          ><span class="slider"></span
-        ></label>
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="modeToggle"
+            aria-label="Toggle dark mode"
+          />
+          <span class="slider"></span>
+        </label>
       </div>
     </header>
 
     <!-- Section 1: Food for the Soul -->
-    <section class="card" id="food-for-the-soul">
-      <h2>Food for the Soul</h2>
-      <div class="split-section">
-        <div class="mantra-container">
-          <p id="mantraText">Loading mantras...</p>
-          <button id="nextMantraBtn">Next Mantra</button>
-        </div>
-        <div class="music-container">
-          <audio id="mantraAudio" controls></audio>
-          <button id="playMantraBtn">Play MP3</button>
-        </div>
+    <section class="card split-section" id="food-for-the-soul">
+      <div class="mantra-container">
+        <h2>Food for the Soul</h2>
+        <p id="mantraText">Loading mantras...</p>
+        <button id="nextMantraBtn" type="button">Next Mantra</button>
+      </div>
+      <div class="music-container">
+        <audio id="mantraAudio" controls></audio>
+        <button id="playMusicBtn" type="button">Play</button>
+        <button id="nextSongBtn" type="button">Next Song</button>
       </div>
     </section>
 
     <!-- Section 2: STOP and Reflect -->
-    <section class="card" id="stop-and-reflect">
-      <h2>STOP and Reflect</h2>
-      <div class="split-section">
-        <div class="prompt-container">
-          <p id="moodPrompt">Loading mood prompts...</p>
-        </div>
-        <div class="emoji-container-wrapper">
-          <fieldset id="emojiContainer">
-            <legend>Select your current mood</legend>
-            <button class="emoji" data-feeling="happy">&#128522;</button>
-            <button class="emoji" data-feeling="sad">&#128546;</button>
-            <button class="emoji" data-feeling="angry">&#128544;</button>
-            <button class="emoji" data-feeling="sleepy">&#128564;</button>
-            <button class="emoji" data-feeling="sick">&#129298;</button>
-          </fieldset>
-          <pre id="emojiStats"></pre>
-        </div>
+    <section class="card square-card split-section" id="stop-and-reflect">
+      <div class="prompt-container">
+        <h2>STOP and Reflect</h2>
+        <p id="moodPrompt">Loading mood prompts...</p>
+        <button id="nextMoodPromptBtn" type="button">Next</button>
+        <textarea
+          id="customMoodPrompt"
+          class="reflection-textarea"
+          placeholder="Write your own reflection or prompt here..."
+          aria-label="Custom mood prompt"
+          rows="6"
+          maxlength="1000"
+        ></textarea>
+      </div>
+      <div class="emoji-box">
+        <fieldset id="emojiContainer">
+          <legend>Select your current mood</legend>
+          <button
+            class="emoji"
+            data-feeling="happy"
+            type="button"
+            aria-pressed="false"
+            aria-label="Happy"
+          >
+            &#128522;
+          </button>
+          <button
+            class="emoji"
+            data-feeling="sad"
+            type="button"
+            aria-pressed="false"
+            aria-label="Sad"
+          >
+            &#128546;
+          </button>
+          <button
+            class="emoji"
+            data-feeling="angry"
+            type="button"
+            aria-pressed="false"
+            aria-label="Angry"
+          >
+            &#128544;
+          </button>
+          <button
+            class="emoji"
+            data-feeling="sleepy"
+            type="button"
+            aria-pressed="false"
+            aria-label="Sleepy"
+          >
+            &#128564;
+          </button>
+          <button
+            class="emoji"
+            data-feeling="sick"
+            type="button"
+            aria-pressed="false"
+            aria-label="Sick"
+          >
+            &#129298;
+          </button>
+        </fieldset>
+        <pre id="emojiStats"></pre>
       </div>
     </section>
 
     <!-- Section 3: The Drop -->
-    <section class="card" id="the-drop">
-      <h2>The Drop</h2>
-      <div class="split-section">
-        <div class="tip-container">
-          <p id="cyberTip">Loading cybersecurity tips...</p>
-          <button id="nextCyberTipBtn">Next Tip</button>
-        </div>
-        <div class="image-container">
-          <img id="cyberImage" src="assets/placeholder.jpg" alt="Cyber Tip" />
-        </div>
+    <section class="card split-section" id="the-drop">
+      <div class="tip-text">
+        <h2>The Drop</h2>
+        <p id="cyberTip">Loading cybersecurity tips...</p>
+        <button id="nextCyberTipBtn" type="button">Next Tip</button>
+      </div>
+      <div class="tip-image">
+        <img
+          id="dropImage"
+          src="assets/images/waterfall.jpg"
+          alt="Drop"
+          class="drop-thumb"
+        />
+        <button id="nextDropImageBtn" type="button">Next Image</button>
       </div>
     </section>
 
@@ -87,12 +141,28 @@
         src="https://forms.gle/D3Knh1qsujpKj7pa6"
         width="100%"
         height="600"
-        class="anon-form"
         title="Anonymous message form"
+        class="anon-form"
       ></iframe>
     </section>
 
-    <!-- Scripts -->
-    <script src="style.js"></script>
+    <script>
+      document
+        .getElementById("modeToggle")
+        .addEventListener("change", function () {
+          document.body.classList.toggle("dark", this.checked);
+        });
+    </script>
   </body>
 </html>
+
+<style>
+  body.dark {
+    background-color: #2e2e2e;
+    color: #fff;
+  }
+  body.dark .card {
+    background: rgba(50, 50, 50, 0.85);
+    color: #fff;
+  }
+</style>
