@@ -7,7 +7,7 @@ body {
   background: url("docs/massage-therapy-1584711_1920.jpg") no-repeat center
     center fixed;
   background-size: cover;
-  color: #5a3e36; /* warm brown */
+  color: #5a3e36;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -16,7 +16,7 @@ h1.header-title {
   font-size: 96px;
   text-align: center;
   margin: 1rem 0 0.5rem 0;
-  color: #ff726f; /* coral peach */
+  color: #ff726f;
   position: relative;
 }
 
@@ -89,7 +89,7 @@ input:checked + .slider:before {
 
 /* === Cards (sections) === */
 .card {
-  background: rgba(255 255 255 / 0.8);
+  background: rgba(255, 255, 255, 0.8);
   max-width: 900px;
   margin: 1.5rem auto;
   border-radius: 1.5rem;
@@ -160,14 +160,15 @@ button:focus {
 /* === Emojis === */
 #emojiContainer {
   display: flex;
-  gap: 1.5rem;
-  font-size: 4rem; /* BIG */
+  gap: 2rem;
   justify-content: center;
   -webkit-user-select: none;
   user-select: none;
+  flex-wrap: wrap;
 }
 
 .emoji {
+  font-size: 4rem; /* <-- Moved here for correct sizing */
   cursor: pointer;
   transition: transform 0.3s ease, filter 0.3s ease;
   border-radius: 50%;
@@ -191,7 +192,7 @@ button:focus {
   margin-top: 1rem;
   font-weight: 700;
   font-size: 1.1rem;
-  color: #b8860b; /* goldenrod */
+  color: #b8860b;
   text-align: center;
 }
 
@@ -233,7 +234,7 @@ body.dark {
 }
 
 body.dark .card {
-  background: rgba(50 50 50 / 0.85);
+  background: rgba(50, 50, 50, 0.85);
   box-shadow: 0 0 20px #ffb74d;
   color: #ddd1c6;
 }
