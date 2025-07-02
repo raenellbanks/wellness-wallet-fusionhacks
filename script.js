@@ -58,6 +58,33 @@ const nextCyberTipBtn = document.getElementById("nextCyberTipBtn");
 // Add this near the top
 const emojiClickSound = new Audio("assets/sounds/click.mp3"); // Add a short click sound to your assets
 
+// Use your local images only
+const images = [
+  "assets/images/waterfall.jpg",
+  "assets/images/coffeedate.jpg",
+  "assets/images/cybergirl.jpg",
+  "assets/images/electrica.jpg",
+  "assets/images/generations.jpg",
+  "assets/images/hackergirl.jpg",
+  "assets/images/letthegoodtimesroll.jpg",
+  "assets/images/love.jpg",
+  "assets/images/namaste.jpg",
+  "assets/images/prettysmile.jpg",
+  "assets/images/rideordie.jpg",
+  "assets/images/selfcare.jpg",
+  "assets/images/sweettooth.jpg",
+];
+
+let dropImageIndex = 0;
+
+// Shuffle helper
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
 // Fetch data from API
 async function fetchData() {
   try {
@@ -91,6 +118,7 @@ function initUI() {
   showMoodPrompt();
   showCyberTip();
   updateEmojiResults();
+  showDropImage();
 }
 
 // Food for the Soul - Mantras
@@ -193,10 +221,17 @@ function updateEmojiResults() {
   // Build results string
   const parts = [];
   for (const [feeling, count] of Object.entries(emojiVotes)) {
-    const percent = ((count / totalVotes) * 100).toFixed(1);
-    parts.push(`${feeling}: ${percent}%`);
+    if (count > 0) {
+      const percent = ((count / totalVotes) * 100).toFixed(1);
+      parts.push(`${capitalize(feeling)}: ${percent}%`);
+    }
   }
-  emojiResultsEl.textContent = parts.join(" | ");
+  emojiResultsEl.textContent = parts.length ? parts.join(" | ") : "No data yet";
+}
+
+// Helper to capitalize first letter
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 // The Drop - Cyber Tips + Images
@@ -217,6 +252,20 @@ function showCyberTip() {
 nextCyberTipBtn.addEventListener("click", () => {
   cyberTipIndex = (cyberTipIndex + 1) % cyberTips.length;
   showCyberTip();
+});
+
+// Drop image logic
+function showDropImage() {
+  const img = document.getElementById("dropImage");
+  if (images.length > 0) {
+    img.src = images[dropImageIndex];
+    img.alt = "Wellness visual";
+  }
+}
+
+document.getElementById("nextDropImageBtn").addEventListener("click", () => {
+  dropImageIndex = (dropImageIndex + 1) % images.length;
+  showDropImage();
 });
 
 // Dark mode toggle logic (from before)
