@@ -237,25 +237,53 @@ button:focus {
   margin-bottom: 1rem;
 }
 
-/* === ANON FORM IFRAME === */
-.anon-form {
-  border: none;
-  border-radius: 1rem;
-  height: 600px;
-  margin-top: 1rem;
-  box-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
+.anonymous-message-section {
+  padding: 4rem 2rem;
+  background: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  width: 100%;
 }
 
-/* === DARK MODE === */
+.anonymous-message-section h2 {
+  font-family: "Pacifico", cursive;
+  font-size: 2.5rem;
+  color: #ff6f61;
+  margin-bottom: 1rem;
+}
+
+.anonymous-message-section p {
+  font-family: "Merienda", cursive;
+  font-size: 1rem;
+  color: #5a3e36;
+  margin-bottom: 2rem;
+}
+
+.anonymous-message-section .anon-form {
+  width: 100%;
+  max-width: 900px;
+  height: 600px;
+  margin: 0 auto;
+  display: block;
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
+}
+/* === DARK MODE STYLES === */
 body.dark {
-  background-color: #2e2e2e;
-  color: #ddd1c6;
+  background-color: #2e2e2e !important;
+  color: #ddd1c6 !important;
+  background: url("docs/massage-therapy-1584711_1920.jpg") !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-attachment: fixed !important;
+  background-size: cover !important; /* keep background image for better dark mode */
 }
 
 body.dark .card {
   background: rgba(50, 50, 50, 0.85);
   box-shadow: 0 0 20px #ffb74d;
   color: #ddd1c6;
+  border-color: #ffc107;
 }
 
 body.dark button {
@@ -268,4 +296,20 @@ body.dark button:focus {
   background-color: #ffc107;
   color: #2e2e2e;
   box-shadow: 0 0 20px #ffc107;
+  outline: none;
 }
+
+body.dark .anonymous-message-section {
+  background: rgba(60, 60, 60, 0.85);
+  color: #ddd1c6;
+}
+
+body.dark .anonymous-message-section h2 {
+  color: #ffb74d;
+}
+
+body.dark .anonymous-message-section p {
+  color: #e0d7b0;
+}
+
+/* Add more dark mode overrides for other elements as needed */

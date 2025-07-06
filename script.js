@@ -219,16 +219,18 @@ function nextCyberTip() {
   showCyberTip();
 }
 
-// === DARK MODE ===
+// === DARK MODE THEME TOGGLE ===
 function toggleTheme() {
   const isDark = DOM.modeToggle.checked;
   document.body.classList.toggle("dark", isDark);
   localStorage.setItem("ww-theme", isDark ? "dark" : "light");
 }
+
 function setInitialTheme() {
-  const saved = localStorage.getItem("ww-theme");
+  const savedTheme = localStorage.getItem("ww-theme");
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const dark = saved ? saved === "dark" : prefersDark;
-  document.body.classList.toggle("dark", dark);
-  DOM.modeToggle.checked = dark;
+  const isDark = savedTheme ? savedTheme === "dark" : prefersDark;
+
+  document.body.classList.toggle("dark", isDark);
+  DOM.modeToggle.checked = isDark;
 }
